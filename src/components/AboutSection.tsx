@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative w-full bg-[#FFC107] dark:bg-[#C9950A] z-20 pt-16 md:pt-24 pb-16 md:pb-32">
+    <section id="about" className="relative w-full bg-brand-primary z-20 pt-16 md:pt-24 pb-16 md:pb-32">
       
       {/* Top Wave Divider pointing up to HistorySection */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-[calc(100%-1px)]">
@@ -17,13 +17,13 @@ export default function AboutSection() {
         >
           <path
             d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
-            className="fill-[#FFC107] dark:fill-[#C9950A]"
+            className="fill-brand-primary"
           ></path>
         </svg>
       </div>
 
       {/* Infinite scrolling marquee text in the background (wrapped in overflow-hidden) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none text-[#FFF3D6] dark:text-[#1E1B16]">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none text-white/10">
         <div className="absolute top-1/4 left-0 w-full flex whitespace-nowrap opacity-10 -rotate-2 scale-110">
           <motion.div 
             animate={{ x: [0, -1000] }} 
@@ -44,7 +44,7 @@ export default function AboutSection() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 text-[#FFFFFF] dark:text-[#1F1F1F] flex flex-col items-center">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 text-white flex flex-col items-center">
         
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -62,7 +62,7 @@ export default function AboutSection() {
         <div className="md:hidden relative w-full max-w-5xl mx-auto px-4 mt-4">
           {/* Custom Drawn Left Arrow */}
           <div className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-20 cursor-pointer hover:-translate-x-1 transition-transform">
-             <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" className="text-[#FFFFFF] dark:text-[#1F1F1F]" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "drop-shadow(1px 1px 0px rgba(0,0,0,0.1))" }}>
+             <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" className="text-white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "drop-shadow(1px 1px 0px rgba(0,0,0,0.1))" }}>
                 <path d="M60,15 C45,35 35,45 15,50 C35,55 45,65 60,85 M20,50 C40,48 60,52 85,50" />
              </svg>
           </div>
@@ -79,7 +79,7 @@ export default function AboutSection() {
             {/* Feature 1 */}
             <SwiperSlide>
               <div className="flex flex-col items-center text-center group h-full cursor-grab active:cursor-grabbing px-2 py-4">
-                <div className="w-28 h-28 rounded-full border-4 border-[#FFF3D6] dark:border-[#1F1F1F] flex items-center justify-center mb-6 group-hover:bg-[#FFF3D6] dark:group-hover:bg-[#F0F0F0] text-[#FFFFFF] dark:text-[#1F1F1F] group-hover:text-[#FFC107] dark:group-hover:text-[#1F1F1F] transition-colors duration-300">
+                <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a7.5 7.5 0 0 0 7.5-7.5C19.5 9.141 12 2.25 12 2.25S4.5 9.141 4.5 13.5A7.5 7.5 0 0 0 12 21Z" />
                    </svg>
@@ -92,7 +92,7 @@ export default function AboutSection() {
             {/* Feature 2 */}
             <SwiperSlide>
               <div className="flex flex-col items-center text-center group h-full cursor-grab active:cursor-grabbing px-2 py-4">
-                <div className="w-28 h-28 rounded-full border-4 border-[#FFF3D6] dark:border-[#1F1F1F] flex items-center justify-center mb-6 group-hover:bg-[#FFF3D6] dark:group-hover:bg-[#F0F0F0] text-[#FFFFFF] dark:text-[#1F1F1F] group-hover:text-[#FFC107] dark:group-hover:text-[#1F1F1F] transition-colors duration-300">
+                <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                    </svg>
@@ -105,7 +105,7 @@ export default function AboutSection() {
             {/* Feature 3 */}
             <SwiperSlide>
               <div className="flex flex-col items-center text-center group h-full cursor-grab active:cursor-grabbing px-2 py-4">
-                <div className="w-28 h-28 rounded-full border-4 border-[#FFF3D6] dark:border-[#1F1F1F] flex items-center justify-center mb-6 group-hover:bg-[#FFF3D6] dark:group-hover:bg-[#F0F0F0] text-[#FFFFFF] dark:text-[#1F1F1F] group-hover:text-[#FFC107] dark:group-hover:text-[#1F1F1F] transition-colors duration-300">
+                <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
                    </svg>
@@ -118,7 +118,7 @@ export default function AboutSection() {
 
           {/* Custom Drawn Right Arrow */}
           <div className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-20 cursor-pointer hover:translate-x-1 transition-transform">
-             <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" className="text-[#FFFFFF] dark:text-[#1F1F1F]" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "drop-shadow(1px 1px 0px rgba(0,0,0,0.1))" }}>
+             <svg width="40" height="40" viewBox="0 0 100 100" fill="none" stroke="currentColor" className="text-white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: "drop-shadow(1px 1px 0px rgba(0,0,0,0.1))" }}>
                 <path d="M40,15 C55,35 65,45 85,50 C65,55 55,65 40,85 M80,50 C60,48 40,52 15,50" />
              </svg>
           </div>
@@ -135,7 +135,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="flex flex-col items-center text-center group h-full"
           >
-            <div className="w-28 h-28 rounded-full border-4 border-[#FFF3D6] dark:border-[#1F1F1F] flex items-center justify-center mb-6 group-hover:bg-[#FFF3D6] dark:group-hover:bg-[#F0F0F0] text-[#FFFFFF] dark:text-[#1F1F1F] group-hover:text-[#FFC107] dark:group-hover:text-[#1F1F1F] transition-colors duration-300">
+            <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a7.5 7.5 0 0 0 7.5-7.5C19.5 9.141 12 2.25 12 2.25S4.5 9.141 4.5 13.5A7.5 7.5 0 0 0 12 21Z" />
                </svg>
@@ -152,7 +152,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="flex flex-col items-center text-center group h-full"
           >
-            <div className="w-28 h-28 rounded-full border-4 border-[#FFF3D6] dark:border-[#1F1F1F] flex items-center justify-center mb-6 group-hover:bg-[#FFF3D6] dark:group-hover:bg-[#F0F0F0] text-[#FFFFFF] dark:text-[#1F1F1F] group-hover:text-[#FFC107] dark:group-hover:text-[#1F1F1F] transition-colors duration-300">
+            <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                </svg>
@@ -169,7 +169,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="flex flex-col items-center text-center group h-full"
           >
-            <div className="w-28 h-28 rounded-full border-4 border-[#FFF3D6] dark:border-[#1F1F1F] flex items-center justify-center mb-6 group-hover:bg-[#FFF3D6] dark:group-hover:bg-[#F0F0F0] text-[#FFFFFF] dark:text-[#1F1F1F] group-hover:text-[#FFC107] dark:group-hover:text-[#1F1F1F] transition-colors duration-300">
+            <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
                </svg>
@@ -189,7 +189,7 @@ export default function AboutSection() {
         >
           <path
             d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
-            className="fill-[#FFC107] dark:fill-[#C9950A]"
+            className="fill-brand-primary"
           ></path>
         </svg>
       </div>

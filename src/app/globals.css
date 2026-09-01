@@ -2,17 +2,24 @@
 
 @custom-variant dark (&:is(.dark *));
 @theme {
-  --color-background: #0B0C10;
-  --color-foreground: rgba(255, 255, 255, 0.95);
-  --color-secondary: #15161A;
-  --color-accent-primary: #FF5E00;
-  --color-accent-secondary: #FFB800;
+  --color-brand-primary: #0B2C6B;
+  --color-brand-primary-dark: #061B44;
+  --color-brand-accent: #1A73E8;
+  --color-brand-accent-hover: #1557B0;
+  --color-brand-link-hover: #8AB4F8;
+  --color-brand-bg: #FFFFFF;
+  --color-brand-text: #0B2C6B;
+  --color-brand-body: #333333;
+  --color-brand-star: #FBBC04;
+
+  --color-background: #FFFFFF;
+  --color-foreground: #333333;
 }
 
 @layer base {
   :root {
-    --background: #0B0C10;
-    --foreground: rgba(255, 255, 255, 0.95);
+    --background: #FFFFFF;
+    --foreground: #333333;
   }
 }
 
