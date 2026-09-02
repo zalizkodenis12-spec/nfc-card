@@ -94,7 +94,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative w-full min-h-[105vh] md:min-h-[130vh] bg-brand-bg z-10 flex items-center overflow-hidden">
+      <div className="relative w-full min-h-screen bg-brand-bg z-10 flex items-center overflow-hidden pt-28 pb-20 md:pt-36 md:pb-32">
         {/* Background image */}
         <div className="absolute inset-0 bg-[url('/hero-chair.jpeg')] bg-cover bg-[85%_center] md:bg-center bg-no-repeat" />
         {/* Lighten overlay — stronger */}
@@ -103,7 +103,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 py-8 flex flex-col items-start mt-[80px] md:mt-0">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 flex flex-col items-start">
 
           {/* Headline */}
           <motion.h1
@@ -144,6 +144,99 @@ export default function Home() {
             >
               096 159 23 77
             </a>
+          </motion.div>
+
+          {/* МІНІ-БЛОК 1: бейджі переваг */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 2.4 }}
+            className="grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-[480px] mt-8 sm:mt-10"
+          >
+            {/* Badge 1 */}
+            <div className="bg-[#F0F6FF] border border-brand-primary/10 rounded-2xl p-2.5 sm:p-3.5 flex flex-col items-center justify-center text-center shadow-[0_4px_15px_rgba(11,44,107,0.06)] hover:shadow-md transition-shadow">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7 text-brand-accent mb-1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+              </svg>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-text leading-tight">
+                Доставка 1-3 дні
+              </span>
+            </div>
+
+            {/* Badge 2 */}
+            <div className="bg-[#F0F6FF] border border-brand-primary/10 rounded-2xl p-2.5 sm:p-3.5 flex flex-col items-center justify-center text-center shadow-[0_4px_15px_rgba(11,44,107,0.06)] hover:shadow-md transition-shadow">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7 text-brand-accent mb-1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+              </svg>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-text leading-tight">
+                Гарантія 12 місяців
+              </span>
+            </div>
+
+            {/* Badge 3 */}
+            <div className="bg-[#F0F6FF] border border-brand-primary/10 rounded-2xl p-2.5 sm:p-3.5 flex flex-col items-center justify-center text-center shadow-[0_4px_15px_rgba(11,44,107,0.06)] hover:shadow-md transition-shadow">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7 text-brand-accent mb-1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 2.25 19.5Z" />
+              </svg>
+              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-text leading-tight">
+                Оплата при отриманні
+              </span>
+            </div>
+          </motion.div>
+
+          {/* МІНІ-БЛОК 2: ціна + CTA & МІНІ-БЛОК 3: переваги */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 2.6 }}
+            className="w-full max-w-[480px] bg-brand-primary rounded-[1.75rem] sm:rounded-[2rem] p-5 sm:p-6 shadow-2xl text-white mt-6 sm:mt-8 relative overflow-hidden border border-white/10"
+          >
+            {/* Price Header */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-baseline gap-2.5">
+                <span className="text-white/60 line-through text-base sm:text-lg font-semibold">
+                  799 грн
+                </span>
+                <span className="text-3xl sm:text-4xl font-serif font-black text-white tracking-tight drop-shadow-sm">
+                  499 грн
+                </span>
+              </div>
+              <span className="bg-brand-accent/40 border border-brand-accent/60 text-white font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">
+                Акція
+              </span>
+            </div>
+
+            {/* Buy CTA Button */}
+            <a
+              href="https://t.me/absolutikdenchik"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full mt-4 flex items-center justify-center text-center bg-brand-accent hover:bg-brand-accent-hover text-white py-3.5 sm:py-4 px-6 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 leading-tight"
+            >
+              Купити зараз
+            </a>
+
+            {/* МІНІ-БЛОК 3: 3 короткі переваги з галочками */}
+            <div className="mt-5 pt-4 border-t border-white/15 flex flex-col gap-2 text-xs sm:text-sm font-medium text-white/90">
+              <div className="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-star shrink-0">
+                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                </svg>
+                <span>Активація за 5 хвилин</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-star shrink-0">
+                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                </svg>
+                <span>Підходить під будь-який заклад</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-star shrink-0">
+                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                </svg>
+                <span>Дизайн під ваш бренд безкоштовно</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
