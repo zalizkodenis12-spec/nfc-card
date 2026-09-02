@@ -1,8 +1,56 @@
-"use client";
+﻿"use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart, getUnitPrice } from "@/context/CartContext";
+
+// Controlled quantity input allowing user to backspace completely and type custom numbers
+function ItemQtyInput({
+  qty,
+  onQtyChange,
+}: {
+  qty: number;
+  onQtyChange: (val: number) => void;
+}) {
+  const [localVal, setLocalVal] = useState<string>(qty.toString());
+
+  useEffect(() => {
+    setLocalVal(qty.toString());
+  }, [qty]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const str = e.target.value;
+    setLocalVal(str);
+    if (str === "") return; // Allow user to completely delete the digit
+    const num = parseInt(str, 10);
+    if (!isNaN(num) && num > 0) {
+      onQtyChange(num);
+    }
+  };
+
+  const handleBlur = () => {
+    const num = parseInt(localVal, 10);
+    if (isNaN(num) || num <= 0) {
+      setLocalVal("1");
+      onQtyChange(1);
+    } else {
+      setLocalVal(num.toString());
+      onQtyChange(num);
+    }
+  };
+
+  return (
+    <input
+      type="number"
+      min="1"
+      value={localVal}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      className="w-11 text-center font-black text-sm sm:text-base text-[#0B2C6B] bg-transparent focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#0B2C6B] rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+      aria-label="Кількість товару"
+    />
+  );
+}
 
 export default function CartDrawer() {
   const {
@@ -11,7 +59,6 @@ export default function CartDrawer() {
     closeCart,
     updateQty,
     removeItem,
-    totalCount,
     totalPrice,
     totalSavings,
   } = useCart();
@@ -42,7 +89,6 @@ export default function CartDrawer() {
   const handleCheckout = () => {
     if (items.length === 0) return;
 
-    // Format pre-filled order text for Telegram
     let orderText = "👋 Вітаю! Хочу оформити замовлення DWS Cards:%0A%0A";
     items.forEach((item, index) => {
       const unitPrice = getUnitPrice(item.qty);
@@ -81,7 +127,7 @@ export default function CartDrawer() {
             className="relative z-[101] w-full sm:w-[420px] max-w-full h-full bg-white flex flex-col shadow-2xl overflow-hidden"
           >
             {/* ── HEADER ── */}
-            <div className="bg-brand-primary text-white px-6 py-5 flex items-center justify-between shrink-0 shadow-md">
+            <div className="bg-[#0B2C6B] text-white px-6 py-5 flex items-center justify-between shrink-0 shadow-md">
               <h2 className="text-2xl font-serif font-bold tracking-wide">
                 Кошик
               </h2>
@@ -114,7 +160,7 @@ export default function CartDrawer() {
               {items.length === 0 ? (
                 // Empty State
                 <div className="flex-1 flex flex-col items-center justify-center text-center py-12 px-4">
-                  <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center text-brand-accent mb-5">
+                  <div className="w-20 h-20 rounded-full bg-blue-50 flex items-center justify-center text-[#0B2C6B] mb-5">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -130,7 +176,7 @@ export default function CartDrawer() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-serif font-bold text-brand-primary mb-2">
+                  <h3 className="text-xl font-serif font-bold text-[#0B2C6B] mb-2">
                     Кошик порожній
                   </h3>
                   <p className="text-gray-500 text-sm max-w-xs mb-6">
@@ -138,7 +184,7 @@ export default function CartDrawer() {
                   </p>
                   <button
                     onClick={closeCart}
-                    className="bg-brand-accent hover:bg-brand-accent-hover text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all text-sm cursor-pointer"
+                    className="bg-[#0B2C6B] hover:bg-[#071F4C] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all text-sm cursor-pointer"
                   >
                     До каталогу
                   </button>
@@ -146,35 +192,23 @@ export default function CartDrawer() {
               ) : (
                 // Item List
                 <div className="space-y-4">
-                  {/* Wholesale Pricing Info Helper — 3 rows, high contrast, large text */}
-                  <div className="bg-[#EEF6FF] border-2 border-[#BCD7FF] rounded-2xl p-4 shadow-xs">
-                    <div className="font-extrabold text-sm sm:text-base flex items-center gap-2 mb-2.5 text-brand-primary">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-5 h-5 text-brand-accent shrink-0"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-11.25a.75.75 0 0 0-1.5 0v2.5h-2.5a.75.75 0 0 0 0 1.5h2.5v2.5a.75.75 0 0 0 1.5 0v-2.5h2.5a.75.75 0 0 0 0-1.5h-2.5v-2.5Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>Оптові знижки на замовлення:</span>
+                  {/* Wholesale Pricing Info Helper — no plus sign, 3 rows, dark blue #0B2C6B theme */}
+                  <div className="bg-[#F0F5FF] border-2 border-[#0B2C6B]/25 rounded-2xl p-4 shadow-xs">
+                    <div className="font-black text-sm sm:text-base mb-2 text-[#0B2C6B]">
+                      Оптові знижки на замовлення:
                     </div>
-                    <div className="flex flex-col gap-2 text-xs sm:text-sm font-bold text-brand-primary">
-                      <div className="flex items-center justify-between border-b border-blue-100/80 pb-1.5">
-                        <span className="text-brand-primary">• 10–29 шт:</span>
-                        <span className="font-black text-brand-accent text-sm sm:text-base">449 грн/шт</span>
+                    <div className="flex flex-col gap-2 text-xs sm:text-sm font-bold text-[#0B2C6B]">
+                      <div className="flex items-center justify-between border-b border-[#0B2C6B]/15 pb-1.5">
+                        <span>• 10–29 шт:</span>
+                        <span className="font-black text-[#0B2C6B] text-sm sm:text-base">449 грн/шт</span>
                       </div>
-                      <div className="flex items-center justify-between border-b border-blue-100/80 pb-1.5">
-                        <span className="text-brand-primary">• 30–99 шт:</span>
-                        <span className="font-black text-brand-accent text-sm sm:text-base">399 грн/шт</span>
+                      <div className="flex items-center justify-between border-b border-[#0B2C6B]/15 pb-1.5">
+                        <span>• 30–99 шт:</span>
+                        <span className="font-black text-[#0B2C6B] text-sm sm:text-base">399 грн/шт</span>
                       </div>
                       <div className="flex items-center justify-between pt-0.5">
-                        <span className="text-brand-primary">• 100+ шт:</span>
-                        <span className="font-black text-brand-accent text-sm sm:text-base">349 грн/шт</span>
+                        <span>• 100+ шт:</span>
+                        <span className="font-black text-[#0B2C6B] text-sm sm:text-base">349 грн/шт</span>
                       </div>
                     </div>
                   </div>
@@ -201,7 +235,7 @@ export default function CartDrawer() {
 
                         {/* Info */}
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-bold text-brand-primary text-sm leading-tight truncate">
+                          <h4 className="font-bold text-[#0B2C6B] text-sm leading-tight truncate">
                             {item.name}
                           </h4>
 
@@ -212,12 +246,12 @@ export default function CartDrawer() {
                                 <span className="line-through text-gray-400 text-xs font-medium">
                                   {item.basePrice} грн
                                 </span>
-                                <span className="text-brand-accent font-extrabold text-sm">
+                                <span className="text-[#0B2C6B] font-black text-sm">
                                   {unitPrice} грн/шт
                                 </span>
                               </>
                             ) : (
-                              <span className="text-brand-primary font-bold text-sm">
+                              <span className="text-[#0B2C6B] font-black text-sm">
                                 {unitPrice} грн/шт
                               </span>
                             )}
@@ -225,7 +259,7 @@ export default function CartDrawer() {
 
                           {/* Item Subtotal */}
                           <div className="text-xs text-gray-500 font-medium mt-0.5">
-                            Разом: <strong className="text-brand-primary font-bold">{subtotal.toLocaleString()} грн</strong>
+                            Разом: <strong className="text-[#0B2C6B] font-black">{subtotal.toLocaleString()} грн</strong>
                           </div>
                         </div>
 
@@ -235,34 +269,22 @@ export default function CartDrawer() {
                             <button
                               type="button"
                               onClick={() => updateQty(item.id, item.qty - 1)}
-                              className="w-7 h-7 rounded-full bg-white hover:bg-gray-100 active:scale-95 text-brand-primary flex items-center justify-center font-black text-sm shadow-xs transition-all cursor-pointer select-none"
+                              className="w-7 h-7 rounded-full bg-white hover:bg-gray-100 active:scale-95 text-[#0B2C6B] flex items-center justify-center font-black text-sm shadow-xs transition-all cursor-pointer select-none"
                               aria-label="Зменшити кількість"
                             >
                               -
                             </button>
-                            <input
-                              type="number"
-                              min="1"
-                              value={item.qty}
-                              onChange={(e) => {
-                                const val = parseInt(e.target.value, 10);
-                                if (!isNaN(val)) {
-                                  updateQty(item.id, val > 0 ? val : 1);
-                                }
-                              }}
-                              onBlur={(e) => {
-                                const val = parseInt(e.target.value, 10);
-                                if (isNaN(val) || val <= 0) {
-                                  updateQty(item.id, 1);
-                                }
-                              }}
-                              className="w-10 text-center font-black text-xs sm:text-sm text-brand-primary bg-transparent focus:outline-none focus:bg-white focus:ring-1 focus:ring-brand-accent rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                              aria-label="Кількість товару"
+
+                            {/* Direct Editable Qty Input */}
+                            <ItemQtyInput
+                              qty={item.qty}
+                              onQtyChange={(newQty) => updateQty(item.id, newQty)}
                             />
+
                             <button
                               type="button"
                               onClick={() => updateQty(item.id, item.qty + 1)}
-                              className="w-7 h-7 rounded-full bg-brand-accent hover:bg-brand-accent-hover active:scale-95 text-white flex items-center justify-center font-black text-sm shadow-xs transition-all cursor-pointer select-none"
+                              className="w-7 h-7 rounded-full bg-[#0B2C6B] hover:bg-[#071F4C] active:scale-95 text-white flex items-center justify-center font-black text-sm shadow-xs transition-all cursor-pointer select-none"
                               aria-label="Збільшити кількість"
                             >
                               +
@@ -273,7 +295,7 @@ export default function CartDrawer() {
                           <button
                             type="button"
                             onClick={() => removeItem(item.id)}
-                            className="text-gray-400 hover:text-brand-primary active:text-brand-primary transition-colors text-xs font-semibold cursor-pointer py-0.5 text-center"
+                            className="text-gray-400 hover:text-[#0B2C6B] active:text-[#0B2C6B] transition-colors text-xs font-semibold cursor-pointer py-0.5 text-center"
                             aria-label="Видалити товар"
                           >
                             Видалити
@@ -289,11 +311,11 @@ export default function CartDrawer() {
             {/* ── FOOTER ── */}
             {items.length > 0 && (
               <div className="bg-white border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] p-5 sm:p-6 shrink-0 space-y-3">
-                {/* Savings notification — light blue */}
+                {/* Savings notification — no emoji, dark blue theme on soft background */}
                 {totalSavings > 0 && (
-                  <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-brand-primary bg-[#E0EEFF] border border-[#B3D7FF] px-3.5 py-2 rounded-xl">
-                    <span>🎉 Ваша оптова економія:</span>
-                    <span className="font-black text-brand-accent">-{totalSavings.toLocaleString()} грн</span>
+                  <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-[#0B2C6B] bg-[#F0F5FF] border border-[#0B2C6B]/20 px-3.5 py-2 rounded-xl">
+                    <span>Ваша оптова економія:</span>
+                    <span className="font-black text-[#0B2C6B]">-{totalSavings.toLocaleString()} грн</span>
                   </div>
                 )}
 
@@ -302,15 +324,15 @@ export default function CartDrawer() {
                   <span className="text-base font-medium text-gray-500">
                     До сплати:
                   </span>
-                  <span className="text-3xl font-serif font-black text-brand-primary tracking-tight">
+                  <span className="text-3xl font-serif font-black text-[#0B2C6B] tracking-tight">
                     {totalPrice.toLocaleString()} грн
                   </span>
                 </div>
 
-                {/* Checkout CTA Button */}
+                {/* Checkout CTA Button in dark blue */}
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-brand-accent hover:bg-brand-accent-hover active:scale-[0.99] text-white py-4 px-6 rounded-full text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full bg-[#0B2C6B] hover:bg-[#071F4C] active:scale-[0.99] text-white py-4 px-6 rounded-full text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Оформити замовлення</span>
                   <svg
