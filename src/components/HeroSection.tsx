@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 export default function HeroSection() {
   return (
@@ -49,7 +49,7 @@ export default function HeroSection() {
       </div>
 
       {/* Кнопка + залишок */}
-      <div style={{ padding: "25px 20px 0" }}>
+      <div style={{ padding: "25px 20px 35px" }}>
         <a href="https://t.me/absolutikdenchik" target="_blank" rel="noreferrer" style={{ display: "block", width: "100%", background: "#1256B8", color: "#fff", padding: "22px", fontSize: "24px", fontWeight: 900, borderRadius: "8px", textAlign: "center", textDecoration: "none", textTransform: "uppercase" }}>
           КУПИТИ ЗАРАЗ
         </a>
@@ -58,26 +58,6 @@ export default function HeroSection() {
           <span style={{ display: "inline-block", background: "#0B2C6B", color: "#fff", padding: "3px 12px", borderRadius: "6px", fontWeight: "bold", fontSize: "20px", margin: "0 3px" }}>9</span>
           {" "}штук по акції
         </div>
-      </div>
-
-      {/* Буліти */}
-      <div style={{ padding: "25px 20px 40px" }}>
-        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {[
-            "Один дотик — і клієнт на сторінці відгуків Google",
-            "Без камери, без QR, без зайвих кроків — просто підносить телефон",
-            "Підходить для будь-якого закладу та смартфона",
-          ].map((text, i) => (
-            <li key={i} style={{ position: "relative", paddingLeft: "45px", marginBottom: "20px", fontSize: "17px", lineHeight: 1.3, color: "#000", minHeight: "32px", display: "flex", alignItems: "center" }}>
-              <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "30px", height: "30px", background: "#1256B8", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px" }}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ width: "16px", height: "16px" }}>
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-              </div>
-              {text}
-            </li>
-          ))}
-        </ul>
       </div>
 
     </section>
