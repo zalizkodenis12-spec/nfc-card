@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 export default function HeroSection() {
   return (
@@ -22,8 +22,8 @@ export default function HeroSection() {
       {/* Смуга переваг */}
       <div style={{ display: "flex", background: "#0B2C6B", color: "#fff", padding: "15px 5px", justifyContent: "space-between" }}>
         {[
-          { label: "Доставка\nза 1-3 дні" },
-          { label: "Гарантія\n12 місяців" },
+          { label: "Створення\nза 2-3 дні" },
+          { label: "Знижки на\nоптові замовлення" },
           { label: "Оплата при\nотриманні" },
         ].map(({ label }, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", fontSize: "13px", lineHeight: 1.2, flex: 1, justifyContent: "center" }}>
@@ -38,7 +38,7 @@ export default function HeroSection() {
 
       {/* Блок цін */}
       <div style={{ display: "flex", position: "relative", background: "#fff", marginTop: "15px" }}>
-        <div style={{ width: "60%", padding: "20px 10px", textAlign: "center", background: "#fff" }}>
+        <div style={{ width: "60%", padding: "20px 35px 20px 10px", textAlign: "center", background: "#fff" }}>
           <span style={{ display: "block", fontSize: "18px", marginBottom: "5px" }}>Стара ціна:</span>
           <span style={{ display: "block", fontSize: "34px", fontWeight: 900, textDecoration: "line-through", color: "#999" }}>799 грн</span>
         </div>
@@ -65,7 +65,7 @@ export default function HeroSection() {
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {[
             "Один дотик — і клієнт на сторінці відгуків Google",
-            "Без камери, без QR, без зайвих кроків — просто підносить телефон",
+            "Без камери, без QR та зайвих кроків",
             "Підходить для будь-якого закладу та смартфона",
           ].map((text, i) => (
             <li key={i} style={{ position: "relative", paddingLeft: "45px", marginBottom: "20px", fontSize: "17px", lineHeight: 1.3, color: "#000", minHeight: "32px", display: "flex", alignItems: "center" }}>
