@@ -56,8 +56,8 @@ export default function HeroSection() {
       {/* Блок цін */}
       <div style={{ display: "flex", position: "relative", background: "#fff", marginTop: "15px" }}>
         <div style={{ width: "60%", padding: "20px 35px 20px 10px", textAlign: "center", background: "#fff" }}>
-          <span style={{ display: "block", fontSize: "18px", marginBottom: "5px" }}>Стара ціна:</span>
-          <span style={{ display: "block", fontSize: "34px", fontWeight: 900, textDecoration: "line-through", color: "#999" }}>799 грн</span>
+          <span style={{ display: "block", fontSize: "18px", marginBottom: "5px", color: "#0B2C6B", fontWeight: 600 }}>Стара ціна:</span>
+          <span style={{ display: "block", fontSize: "34px", fontWeight: 900, textDecoration: "line-through", color: "#0B2C6B" }}>799 грн</span>
         </div>
         <div style={{ width: "55%", background: "#0B2C6B", color: "#fff", padding: "20px 10px", paddingLeft: "10%", textAlign: "center", clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)", marginLeft: "-15%", position: "relative", zIndex: 1 }}>
           <span style={{ display: "block", fontSize: "18px", marginBottom: "5px" }}>Акційна ціна:</span>
