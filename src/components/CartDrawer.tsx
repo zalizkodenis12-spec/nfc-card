@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -82,16 +82,9 @@ export default function CartDrawer() {
           >
             {/* ── HEADER ── */}
             <div className="bg-brand-primary text-white px-6 py-5 flex items-center justify-between shrink-0 shadow-md">
-              <div className="flex items-center gap-3">
-                <h2 className="text-2xl font-serif font-bold tracking-wide">
-                  Кошик
-                </h2>
-                {totalCount > 0 && (
-                  <span className="bg-brand-accent text-white text-xs font-bold px-2.5 py-0.5 rounded-full">
-                    {totalCount} шт.
-                  </span>
-                )}
-              </div>
+              <h2 className="text-2xl font-serif font-bold tracking-wide">
+                Кошик
+              </h2>
 
               {/* Close Button */}
               <button
@@ -153,14 +146,14 @@ export default function CartDrawer() {
               ) : (
                 // Item List
                 <div className="space-y-4">
-                  {/* Wholesale Pricing Info Helper */}
-                  <div className="bg-[#F0F6FF] border border-brand-accent/20 rounded-xl p-3 text-xs text-brand-primary">
-                    <div className="font-bold flex items-center gap-1.5 mb-1 text-brand-accent">
+                  {/* Wholesale Pricing Info Helper — 3 rows, high contrast, large text */}
+                  <div className="bg-[#EEF6FF] border-2 border-[#BCD7FF] rounded-2xl p-4 shadow-xs">
+                    <div className="font-extrabold text-sm sm:text-base flex items-center gap-2 mb-2.5 text-brand-primary">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
-                        className="w-4 h-4 shrink-0"
+                        className="w-5 h-5 text-brand-accent shrink-0"
                       >
                         <path
                           fillRule="evenodd"
@@ -168,12 +161,21 @@ export default function CartDrawer() {
                           clipRule="evenodd"
                         />
                       </svg>
-                      Гуртові знижки на замовлення:
+                      <span>Оптові знижки на замовлення:</span>
                     </div>
-                    <div className="grid grid-cols-2 gap-1 text-[11px] text-brand-body">
-                      <span>• 10-29 шт: <strong className="text-brand-primary">449 грн</strong></span>
-                      <span>• 30-99 шт: <strong className="text-brand-primary">399 грн</strong></span>
-                      <span className="col-span-2">• 100+ шт: <strong className="text-brand-primary">349 грн</strong></span>
+                    <div className="flex flex-col gap-2 text-xs sm:text-sm font-bold text-brand-primary">
+                      <div className="flex items-center justify-between border-b border-blue-100/80 pb-1.5">
+                        <span className="text-brand-primary">• 10–29 шт:</span>
+                        <span className="font-black text-brand-accent text-sm sm:text-base">449 грн/шт</span>
+                      </div>
+                      <div className="flex items-center justify-between border-b border-blue-100/80 pb-1.5">
+                        <span className="text-brand-primary">• 30–99 шт:</span>
+                        <span className="font-black text-brand-accent text-sm sm:text-base">399 грн/шт</span>
+                      </div>
+                      <div className="flex items-center justify-between pt-0.5">
+                        <span className="text-brand-primary">• 100+ шт:</span>
+                        <span className="font-black text-brand-accent text-sm sm:text-base">349 грн/шт</span>
+                      </div>
                     </div>
                   </div>
 
@@ -227,32 +229,51 @@ export default function CartDrawer() {
                           </div>
                         </div>
 
-                        {/* Qty Controls */}
-                        <div className="flex flex-col items-end gap-2 shrink-0">
-                          <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-full p-1">
+                        {/* Qty Controls + Centered Delete Button */}
+                        <div className="flex flex-col items-center justify-center gap-1 shrink-0">
+                          <div className="flex items-center gap-1 bg-gray-50 border border-gray-300 rounded-full p-1 shadow-xs">
                             <button
+                              type="button"
                               onClick={() => updateQty(item.id, item.qty - 1)}
-                              className="w-7 h-7 rounded-full bg-white hover:bg-gray-100 active:scale-95 text-brand-primary flex items-center justify-center font-bold text-sm shadow-xs transition-all cursor-pointer"
+                              className="w-7 h-7 rounded-full bg-white hover:bg-gray-100 active:scale-95 text-brand-primary flex items-center justify-center font-black text-sm shadow-xs transition-all cursor-pointer select-none"
                               aria-label="Зменшити кількість"
                             >
                               -
                             </button>
-                            <span className="w-6 text-center text-xs font-black text-brand-primary">
-                              {item.qty}
-                            </span>
+                            <input
+                              type="number"
+                              min="1"
+                              value={item.qty}
+                              onChange={(e) => {
+                                const val = parseInt(e.target.value, 10);
+                                if (!isNaN(val)) {
+                                  updateQty(item.id, val > 0 ? val : 1);
+                                }
+                              }}
+                              onBlur={(e) => {
+                                const val = parseInt(e.target.value, 10);
+                                if (isNaN(val) || val <= 0) {
+                                  updateQty(item.id, 1);
+                                }
+                              }}
+                              className="w-10 text-center font-black text-xs sm:text-sm text-brand-primary bg-transparent focus:outline-none focus:bg-white focus:ring-1 focus:ring-brand-accent rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                              aria-label="Кількість товару"
+                            />
                             <button
+                              type="button"
                               onClick={() => updateQty(item.id, item.qty + 1)}
-                              className="w-7 h-7 rounded-full bg-brand-accent hover:bg-brand-accent-hover active:scale-95 text-white flex items-center justify-center font-bold text-sm shadow-xs transition-all cursor-pointer"
+                              className="w-7 h-7 rounded-full bg-brand-accent hover:bg-brand-accent-hover active:scale-95 text-white flex items-center justify-center font-black text-sm shadow-xs transition-all cursor-pointer select-none"
                               aria-label="Збільшити кількість"
                             >
                               +
                             </button>
                           </div>
 
-                          {/* Delete Item */}
+                          {/* Delete Item — centered directly under the number, turns dark blue on hover */}
                           <button
+                            type="button"
                             onClick={() => removeItem(item.id)}
-                            className="text-gray-400 hover:text-red-500 text-xs transition-colors cursor-pointer px-1"
+                            className="text-gray-400 hover:text-brand-primary active:text-brand-primary transition-colors text-xs font-semibold cursor-pointer py-0.5 text-center"
                             aria-label="Видалити товар"
                           >
                             Видалити
@@ -268,11 +289,11 @@ export default function CartDrawer() {
             {/* ── FOOTER ── */}
             {items.length > 0 && (
               <div className="bg-white border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] p-5 sm:p-6 shrink-0 space-y-3">
-                {/* Savings notification */}
+                {/* Savings notification — light blue */}
                 {totalSavings > 0 && (
-                  <div className="flex items-center justify-between text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg">
-                    <span>🎉 Ваша гуртова економія:</span>
-                    <span>-{totalSavings.toLocaleString()} грн</span>
+                  <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-brand-primary bg-[#E0EEFF] border border-[#B3D7FF] px-3.5 py-2 rounded-xl">
+                    <span>🎉 Ваша оптова економія:</span>
+                    <span className="font-black text-brand-accent">-{totalSavings.toLocaleString()} грн</span>
                   </div>
                 )}
 

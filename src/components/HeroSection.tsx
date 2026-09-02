@@ -8,8 +8,8 @@ export default function HeroSection() {
   const handleBuyNow = () => {
     addItem(
       {
-        id: "dws-nfc-card",
-        name: "NFC-картка DWS Cards",
+        id: "nfc-card-google-maps",
+        name: "NFC-картка Google Maps",
         image: "/nfc-card.jpg",
         basePrice: 499,
       },
