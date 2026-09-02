@@ -93,153 +93,147 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="relative w-full min-h-screen bg-brand-bg z-10 flex items-center overflow-hidden pt-28 pb-20 md:pt-36 md:pb-32">
-        {/* Background image */}
-        <div className="absolute inset-0 bg-[url('/hero-chair.jpeg')] bg-cover bg-[85%_center] md:bg-center bg-no-repeat" />
-        {/* Lighten overlay — stronger */}
-        <div className="absolute inset-0 bg-white/70" />
-        {/* Gradient from left for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-transparent" />
+      {/* ═══════════════════════════════════════════════════════
+           HERO — PRODUCT-CENTRIC LAYOUT (mobile-first)
+      ═══════════════════════════════════════════════════════ */}
+      <section className="relative w-full bg-white z-10 pt-[80px] md:pt-[100px] overflow-hidden">
 
-        {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 flex flex-col items-start">
+        {/* ── Desktop two-column + Mobile single-column wrapper ── */}
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col md:flex-row md:items-center md:gap-10">
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.8 }}
-            className="text-4xl md:text-6xl xl:text-7xl font-serif font-bold text-brand-text leading-tight mb-6 max-w-5xl"
-          >
-            Більше 5★ відгуків<br />без прохань і<br />незручних розмов
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 2.0 }}
-            className="text-lg md:text-2xl text-brand-body font-medium mb-10 max-w-lg leading-relaxed"
-          >
-            NFC-картка для бізнесу. Без QR, без камери, без зайвих кліків.
-          </motion.p>
-
-          {/* Buttons */}
+          {/* ── LEFT / TOP: Text block ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 2.2 }}
-            className="flex flex-row w-full sm:w-auto gap-2 sm:gap-4"
+            transition={{ duration: 0.65, delay: 1.8 }}
+            className="w-full md:w-1/2 pt-8 md:pt-16 pb-4 md:pb-16 flex flex-col"
           >
-            <a
-              href="#contacts"
-              className="flex-1 sm:flex-none flex items-center justify-center text-center bg-brand-accent hover:bg-brand-accent-hover text-white px-2 sm:px-12 py-3 sm:py-4 rounded-full text-[13px] sm:text-lg font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 leading-tight"
-            >
-              Замовити картку
-            </a>
-            <a
-              href="tel:+380961592377"
-              className="flex-1 sm:flex-none flex items-center justify-center text-center whitespace-nowrap bg-white hover:bg-blue-50/50 text-brand-accent border-2 border-brand-accent px-2 sm:px-12 py-3 sm:py-4 rounded-full text-[13px] sm:text-lg font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 leading-tight"
-            >
-              096 159 23 77
-            </a>
-          </motion.div>
+            <h1 className="text-[2rem] sm:text-4xl md:text-5xl xl:text-6xl font-serif font-black text-brand-text leading-[1.15] mb-4 md:mb-6">
+              Більше 5★ відгуків<br />без прохань і<br />незручних розмов
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-brand-body font-medium mb-7 md:mb-9 leading-relaxed max-w-md">
+              NFC-картка для бізнесу. Без QR, без камери, без зайвих кліків.
+            </p>
 
-          {/* МІНІ-БЛОК 1: бейджі переваг */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 2.4 }}
-            className="grid grid-cols-3 gap-2 sm:gap-4 w-full max-w-[480px] mt-8 sm:mt-10"
-          >
-            {/* Badge 1 */}
-            <div className="bg-[#F0F6FF] border border-brand-primary/10 rounded-2xl p-2.5 sm:p-3.5 flex flex-col items-center justify-center text-center shadow-[0_4px_15px_rgba(11,44,107,0.06)] hover:shadow-md transition-shadow">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7 text-brand-accent mb-1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-              </svg>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-text leading-tight">
-                Доставка 1-3 дні
-              </span>
-            </div>
-
-            {/* Badge 2 */}
-            <div className="bg-[#F0F6FF] border border-brand-primary/10 rounded-2xl p-2.5 sm:p-3.5 flex flex-col items-center justify-center text-center shadow-[0_4px_15px_rgba(11,44,107,0.06)] hover:shadow-md transition-shadow">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7 text-brand-accent mb-1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-              </svg>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-text leading-tight">
-                Гарантія 12 місяців
-              </span>
-            </div>
-
-            {/* Badge 3 */}
-            <div className="bg-[#F0F6FF] border border-brand-primary/10 rounded-2xl p-2.5 sm:p-3.5 flex flex-col items-center justify-center text-center shadow-[0_4px_15px_rgba(11,44,107,0.06)] hover:shadow-md transition-shadow">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-6 h-6 sm:w-7 sm:h-7 text-brand-accent mb-1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 2.25 19.5Z" />
-              </svg>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-text leading-tight">
-                Оплата при отриманні
-              </span>
+            {/* CTA Buttons — desktop only (mobile has them in the price block below) */}
+            <div className="hidden md:flex gap-4">
+              <a
+                href="#contacts"
+                className="flex items-center justify-center bg-brand-accent hover:bg-brand-accent-hover text-white px-10 py-4 rounded-full text-base font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300"
+              >
+                Замовити картку
+              </a>
+              <a
+                href="tel:+380961592377"
+                className="flex items-center justify-center bg-white hover:bg-blue-50 text-brand-accent border-2 border-brand-accent px-10 py-4 rounded-full text-base font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+              >
+                096 159 23 77
+              </a>
             </div>
           </motion.div>
 
-          {/* МІНІ-БЛОК 2: ціна + CTA & МІНІ-БЛОК 3: переваги */}
+          {/* ── RIGHT / BOTTOM: Product image + conversion widgets ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 2.6 }}
-            className="w-full max-w-[480px] bg-brand-primary rounded-[1.75rem] sm:rounded-[2rem] p-5 sm:p-6 shadow-2xl text-white mt-6 sm:mt-8 relative overflow-hidden border border-white/10"
+            transition={{ duration: 0.65, delay: 2.0 }}
+            className="w-full md:w-1/2 flex flex-col"
           >
-            {/* Price Header */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-baseline gap-2.5">
-                <span className="text-white/60 line-through text-base sm:text-lg font-semibold">
-                  799 грн
-                </span>
-                <span className="text-3xl sm:text-4xl font-serif font-black text-white tracking-tight drop-shadow-sm">
-                  499 грн
-                </span>
+            {/* Product image */}
+            <div className="w-full flex justify-center items-end">
+              <img
+                src="/hero-chair.jpeg"
+                alt="DWS Cards NFC картка"
+                className="w-full max-w-[400px] md:max-w-full object-contain object-bottom drop-shadow-xl"
+                style={{ maxHeight: "380px" }}
+              />
+            </div>
+
+            {/* ── BADGE STRIP ── */}
+            <div className="w-full grid grid-cols-3 bg-brand-primary rounded-t-2xl overflow-hidden">
+              {/* Badge 1 */}
+              <div className="flex flex-col items-center justify-center gap-1.5 px-2 py-3 sm:py-4 text-white border-r border-white/15 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 opacity-90">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                </svg>
+                <span className="text-[10px] sm:text-xs font-bold leading-tight">Доставка<br />1-3 дні</span>
               </div>
-              <span className="bg-brand-accent/40 border border-brand-accent/60 text-white font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full uppercase tracking-wider whitespace-nowrap">
-                Акція
-              </span>
+              {/* Badge 2 */}
+              <div className="flex flex-col items-center justify-center gap-1.5 px-2 py-3 sm:py-4 text-white border-r border-white/15 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 opacity-90">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+                </svg>
+                <span className="text-[10px] sm:text-xs font-bold leading-tight">Гарантія<br />12 місяців</span>
+              </div>
+              {/* Badge 3 */}
+              <div className="flex flex-col items-center justify-center gap-1.5 px-2 py-3 sm:py-4 text-white text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 opacity-90">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 2.25 19.5Z" />
+                </svg>
+                <span className="text-[10px] sm:text-xs font-bold leading-tight">Оплата при<br />отриманні</span>
+              </div>
             </div>
 
-            {/* Buy CTA Button */}
+            {/* ── SPLIT PRICE BAR ── */}
+            <div className="w-full grid grid-cols-2">
+              {/* Old price — white left half */}
+              <div className="flex flex-col justify-center px-4 py-3 sm:py-4 bg-white border border-brand-primary/10">
+                <span className="text-xs sm:text-sm text-gray-400 font-medium mb-0.5">Стара ціна:</span>
+                <span className="text-xl sm:text-2xl md:text-3xl font-black font-serif text-gray-400 line-through">799 грн</span>
+              </div>
+              {/* New price — dark right half */}
+              <div className="flex flex-col justify-center px-4 py-3 sm:py-4 bg-brand-primary">
+                <span className="text-xs sm:text-sm text-white/70 font-medium mb-0.5">Акційна ціна:</span>
+                <span className="text-xl sm:text-2xl md:text-3xl font-black font-serif text-white drop-shadow-sm">499 грн</span>
+              </div>
+            </div>
+
+            {/* ── CTA BUTTON (full width) ── */}
             <a
               href="https://t.me/absolutikdenchik"
               target="_blank"
               rel="noreferrer"
-              className="w-full mt-4 flex items-center justify-center text-center bg-brand-accent hover:bg-brand-accent-hover text-white py-3.5 sm:py-4 px-6 rounded-full text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 leading-tight"
+              className="w-full flex items-center justify-center bg-brand-accent hover:bg-brand-accent-hover text-white py-4 sm:py-5 text-base sm:text-lg font-black tracking-wide shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 rounded-b-2xl"
             >
               Купити зараз
             </a>
 
-            {/* МІНІ-БЛОК 3: 3 короткі переваги з галочками */}
-            <div className="mt-5 pt-4 border-t border-white/15 flex flex-col gap-2 text-xs sm:text-sm font-medium text-white/90">
-              <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-star shrink-0">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-                </svg>
-                <span>Активація за 5 хвилин</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-star shrink-0">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-                </svg>
-                <span>Підходить під будь-який заклад</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-brand-star shrink-0">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
-                </svg>
-                <span>Дизайн під ваш бренд безкоштовно</span>
-              </div>
+            {/* ── FEATURE BULLETS ── */}
+            <div className="w-full flex flex-col sm:flex-row sm:justify-between gap-1.5 sm:gap-0 mt-4 mb-6 md:mb-0 px-1">
+              {[
+                "Активація за 5 хвилин",
+                "Підходить будь-якому закладу",
+                "Дизайн під бренд — безкоштовно",
+              ].map((text) => (
+                <div key={text} className="flex items-center gap-1.5 text-xs sm:text-[11px] text-brand-body font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5 text-brand-accent shrink-0">
+                    <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                  </svg>
+                  <span>{text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile CTA buttons */}
+            <div className="flex md:hidden gap-2 mb-8 px-0">
+              <a
+                href="#contacts"
+                className="flex-1 flex items-center justify-center bg-brand-accent hover:bg-brand-accent-hover text-white py-3.5 rounded-full text-sm font-bold shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                Замовити картку
+              </a>
+              <a
+                href="tel:+380961592377"
+                className="flex-1 flex items-center justify-center bg-white text-brand-accent border-2 border-brand-accent py-3.5 rounded-full text-sm font-bold shadow-md transition-all duration-300"
+              >
+                096 159 23 77
+              </a>
             </div>
           </motion.div>
+
         </div>
-      </div>
+      </section>
+
 
       {/* The new Menu Section that slides up after the animation finishes */}
       <MenuSection />
