@@ -52,7 +52,7 @@ export default function AboutSection() {
           viewport={{ once: true, margin: "-20%" }}
           className="text-center"
         >
-          <h2 className="text-5xl md:text-8xl font-serif font-bold mb-6 md:mb-8 drop-shadow-sm">Чому це працює</h2>
+          <h2 className="text-5xl md:text-8xl font-serif font-bold mb-6 md:mb-8 drop-shadow-sm">Чому це працює?</h2>
           <p className="text-xl md:text-3xl font-medium max-w-4xl mx-auto leading-relaxed mb-8 md:mb-24">
             Клієнти рідко пишуть відгуки самі — їм ліньки шукати вас в Google чи возитись з QR-кодом. NFC-картка прибирає всі зайві кроки: один дотик — і відгук лишити простіше, ніж не лишити.
           </p>
@@ -81,11 +81,12 @@ export default function AboutSection() {
               <div className="flex flex-col items-center text-center group h-full cursor-grab active:cursor-grabbing px-2 py-4">
                 <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a7.5 7.5 0 0 0 7.5-7.5C19.5 9.141 12 2.25 12 2.25S4.5 9.141 4.5 13.5A7.5 7.5 0 0 0 12 21Z" />
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75a2.25 2.25 0 0 1 2.25 2.25M12 6.75a5.25 5.25 0 0 1 5.25 5.25" />
                    </svg>
                 </div>
                 <h3 className="text-3xl font-bold mb-4 font-serif">Один дотик</h3>
-                <p className="text-xl opacity-80 font-medium">Без камери, без набору посилання вручну. Спрацьовує миттєво на будь-якому сучасному телефоні.</p>
+                <p className="text-xl opacity-80 font-medium">Без камери та пошуку посилань. Спрацьовує миттєво на будь-якому смартфоні.</p>
               </div>
             </SwiperSlide>
             
@@ -94,10 +95,10 @@ export default function AboutSection() {
               <div className="flex flex-col items-center text-center group h-full cursor-grab active:cursor-grabbing px-2 py-4">
                 <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
                    </svg>
                 </div>
-                <h3 className="text-3xl font-bold mb-4 font-serif">Виглядає преміально</h3>
+                <h3 className="text-3xl font-bold mb-4 font-serif whitespace-nowrap">Преміальний вид</h3>
                 <p className="text-xl opacity-80 font-medium">Стильний сучасний аксесуар на стійці чи касі, який підкреслює високий статус вашого бізнесу.</p>
               </div>
             </SwiperSlide>
@@ -107,7 +108,7 @@ export default function AboutSection() {
               <div className="flex flex-col items-center text-center group h-full cursor-grab active:cursor-grabbing px-2 py-4">
                 <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                     <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                    </svg>
                 </div>
                 <h3 className="text-3xl font-bold mb-4 font-serif">Працює завжди</h3>
@@ -137,11 +138,12 @@ export default function AboutSection() {
           >
             <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a7.5 7.5 0 0 0 7.5-7.5C19.5 9.141 12 2.25 12 2.25S4.5 9.141 4.5 13.5A7.5 7.5 0 0 0 12 21Z" />
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75a2.25 2.25 0 0 1 2.25 2.25M12 6.75a5.25 5.25 0 0 1 5.25 5.25" />
                </svg>
             </div>
             <h3 className="text-3xl font-bold mb-4 font-serif">Один дотик</h3>
-            <p className="text-xl opacity-80 font-medium">Без камери, без набору посилання вручну. Спрацьовує миттєво на будь-якому сучасному телефоні.</p>
+            <p className="text-xl opacity-80 font-medium">Без камери та пошуку посилань. Спрацьовує миттєво на будь-якому смартфоні.</p>
           </motion.div>
           
           {/* Feature 2 */}
@@ -154,10 +156,10 @@ export default function AboutSection() {
           >
             <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                 <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
                </svg>
             </div>
-            <h3 className="text-3xl font-bold mb-4 font-serif">Виглядає преміально</h3>
+            <h3 className="text-3xl font-bold mb-4 font-serif whitespace-nowrap">Преміальний вид</h3>
             <p className="text-xl opacity-80 font-medium">Стильний сучасний аксесуар на стійці чи касі, який підкреслює високий статус вашого бізнесу.</p>
           </motion.div>
 
@@ -171,7 +173,7 @@ export default function AboutSection() {
           >
             <div className="w-28 h-28 rounded-full border-4 border-white/40 flex items-center justify-center mb-6 group-hover:bg-white text-white group-hover:text-brand-accent group-hover:border-white transition-colors duration-300">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12">
-                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                 <path strokeLinecap="round" strokeLinejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                </svg>
             </div>
             <h3 className="text-3xl font-bold mb-4 font-serif">Працює завжди</h3>
