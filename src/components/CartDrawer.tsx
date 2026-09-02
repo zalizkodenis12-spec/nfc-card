@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -310,15 +310,7 @@ export default function CartDrawer() {
 
             {/* ── FOOTER ── */}
             {items.length > 0 && (
-              <div className="bg-white border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] p-5 sm:p-6 shrink-0 space-y-3">
-                {/* Savings notification — no emoji, dark blue theme on soft background */}
-                {totalSavings > 0 && (
-                  <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-[#0B2C6B] bg-[#F0F5FF] border border-[#0B2C6B]/20 px-3.5 py-2 rounded-xl">
-                    <span>Ваша оптова економія:</span>
-                    <span className="font-black text-[#0B2C6B]">-{totalSavings.toLocaleString()} грн</span>
-                  </div>
-                )}
-
+              <div className="bg-white border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] p-5 sm:p-6 shrink-0 space-y-4">
                 {/* Total Price */}
                 <div className="flex items-baseline justify-between">
                   <span className="text-base font-medium text-gray-500">
