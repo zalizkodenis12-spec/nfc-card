@@ -1,6 +1,23 @@
 "use client";
 
+import { useCart } from "@/context/CartContext";
+
 export default function HeroSection() {
+  const { addItem, openCart } = useCart();
+
+  const handleBuyNow = () => {
+    addItem(
+      {
+        id: "dws-nfc-card",
+        name: "NFC-картка DWS Cards",
+        image: "/nfc-card.jpg",
+        basePrice: 499,
+      },
+      1
+    );
+    openCart();
+  };
+
   return (
     <section style={{ maxWidth: "480px", margin: "0 auto", background: "#fff", color: "#000", overflow: "hidden" }}>
 
@@ -50,9 +67,27 @@ export default function HeroSection() {
 
       {/* Кнопка + залишок */}
       <div style={{ padding: "25px 20px 0" }}>
-        <a href="https://t.me/absolutikdenchik" target="_blank" rel="noreferrer" style={{ display: "block", width: "100%", background: "#1256B8", color: "#fff", padding: "22px", fontSize: "24px", fontWeight: 900, borderRadius: "8px", textAlign: "center", textDecoration: "none", textTransform: "uppercase" }}>
+        <button
+          type="button"
+          onClick={handleBuyNow}
+          style={{
+            display: "block",
+            width: "100%",
+            background: "#1256B8",
+            color: "#fff",
+            padding: "22px",
+            fontSize: "24px",
+            fontWeight: 900,
+            borderRadius: "8px",
+            textAlign: "center",
+            textDecoration: "none",
+            textTransform: "uppercase",
+            cursor: "pointer",
+            border: "none",
+          }}
+        >
           КУПИТИ ЗАРАЗ
-        </a>
+        </button>
         <div style={{ textAlign: "center", marginTop: "20px", fontSize: "16px", color: "#333" }}>
           * залишилось{" "}
           <span style={{ display: "inline-block", background: "#0B2C6B", color: "#fff", padding: "3px 12px", borderRadius: "6px", fontWeight: "bold", fontSize: "20px", margin: "0 3px" }}>9</span>

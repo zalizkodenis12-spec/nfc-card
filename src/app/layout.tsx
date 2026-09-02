@@ -8,6 +8,7 @@ const caveat = Caveat({
 });
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { CartProvider } from "@/context/CartContext";
 
 export const metadata: Metadata = {
   title: "DWS Cards - NFC-картки для збору відгуків Google",
@@ -31,7 +32,9 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={false}
         >
-          {children}
+          <CartProvider>
+            {children}
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>
