@@ -23,8 +23,8 @@ export default function Home() {
     <main className="relative w-full bg-brand-bg">
       <PageIntro />
 
-      {/* Navbar — fixed, classic solid blue */}
-      <div className="fixed top-0 left-0 w-full pt-4 pb-6 bg-brand-primary z-50">
+      {/* Navbar — scrolls with page */}
+      <div className="relative w-full pt-4 pb-6 bg-brand-primary z-50">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -93,8 +93,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Spacer under fixed navbar */}
-      <div className="h-[100px] md:h-[120px]" />
 
       {/* === HERO BLOCK === */}
       <HeroSection />
