@@ -73,7 +73,7 @@ export default function HeroSection() {
           style={{
             display: "block",
             width: "100%",
-            background: "#1256B8",
+            background: "#0B2C6B",
             color: "#fff",
             padding: "22px",
             fontSize: "24px",
@@ -104,7 +104,7 @@ export default function HeroSection() {
             "Підходить для будь-якого закладу та смартфона",
           ].map((text, i) => (
             <li key={i} style={{ position: "relative", paddingLeft: "45px", marginBottom: "20px", fontSize: "17px", lineHeight: 1.3, color: "#000", minHeight: "32px", display: "flex", alignItems: "center" }}>
-              <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "30px", height: "30px", background: "#1256B8", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px" }}>
+              <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "30px", height: "30px", background: "#0B2C6B", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px" }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ width: "16px", height: "16px" }}>
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
