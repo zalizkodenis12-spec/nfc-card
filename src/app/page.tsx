@@ -96,7 +96,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════
            HERO — PRODUCT-CENTRIC LAYOUT (mobile-first)
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative w-full bg-white z-10 pt-[80px] md:pt-[100px] overflow-hidden">
+      <section className="relative w-full bg-white z-10 overflow-hidden">
 
         {/* ── Desktop two-column + Mobile single-column wrapper ── */}
         <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col md:flex-row md:items-center md:gap-10">
@@ -106,7 +106,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 1.8 }}
-            className="w-full md:w-1/2 pt-8 md:pt-16 pb-4 md:pb-16 flex flex-col"
+            className="w-full md:w-1/2 pt-[100px] md:pt-[120px] pb-4 md:pb-16 flex flex-col"
           >
             <h1 className="text-[2rem] sm:text-4xl md:text-5xl xl:text-6xl font-serif font-black text-brand-text leading-[1.15] mb-4 md:mb-6">
               Більше 5★ відгуків<br />без прохань і<br />незручних розмов
@@ -137,15 +137,14 @@ export default function Home() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 2.0 }}
-            className="w-full md:w-1/2 flex flex-col"
+            className="w-full md:w-1/2 flex flex-col pt-6 md:pt-[120px]"
           >
-            {/* Product image */}
-            <div className="w-full flex justify-center items-end">
+            {/* Product image — card-style container */}
+            <div className="w-full mx-auto max-w-[400px] md:max-w-full rounded-t-3xl overflow-hidden bg-[#F5F5F5] aspect-[4/3]">
               <img
                 src="/hero-chair.jpeg"
                 alt="DWS Cards NFC картка"
-                className="w-full max-w-[400px] md:max-w-full object-contain object-bottom drop-shadow-xl"
-                style={{ maxHeight: "380px" }}
+                className="w-full h-full object-cover object-center"
               />
             </div>
 
