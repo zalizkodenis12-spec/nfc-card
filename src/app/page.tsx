@@ -10,6 +10,7 @@ import ReviewsSection from "@/components/ReviewsSection";
 import Footer from "@/components/Footer";
 import PageIntro from "@/components/PageIntro";
 import { AnimatedThemeToggler } from "@/components/AnimatedThemeToggler";
+import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,6 +95,9 @@ export default function Home() {
 
       {/* Spacer under fixed navbar */}
       <div className="h-[100px] md:h-[120px]" />
+
+      {/* === HERO BLOCK === */}
+      <HeroSection />
 
       {/* === BLOCKS === */}
       <MenuSection />
