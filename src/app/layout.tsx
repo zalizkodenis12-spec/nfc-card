@@ -10,8 +10,8 @@ const caveat = Caveat({
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "HardClean - виїзна хімчистка м'яких меблів у Вінниці",
-  description: "Професійна виїзна хімчистка диванів, матраців, крісел, стільців та килимів у Вінниці та області.",
+  title: "DWS Cards - NFC-картки для збору відгуків Google",
+  description: "NFC-картки для бізнесу. Швидкий та зручний збір 5★ відгуків Google в один дотик без QR-кодів.",
 };
 
 export default function RootLayout({

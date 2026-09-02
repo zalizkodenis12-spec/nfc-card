@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const SERVICES = [
-  { id: 1, name: "Хімчистка диванів", desc: "Повертаємо свіжість та ідеальну чистоту вашим меблям." },
-  { id: 2, name: "Глибока чистка матраців", desc: "Видаляємо пилових кліщів, алергени та застарілі плями." },
-  { id: 3, name: "Чистка крісел та пуфів", desc: "Дбайливий професійний догляд за улюбленими меблями." },
-  { id: 4, name: "Чистка м'яких стільців", desc: "Відновлюємо вигляд кухонних та офісних стільців." },
+  { id: 1, name: "NFC-картка з програмуванням" },
+  { id: 2, name: "Підставка для стійки/каси" },
+  { id: 3, name: "Налаштування під ваш Google-профіль" },
+  { id: 4, name: "Дизайн картки під бренд закладу" },
 ];
 
 export default function MenuSection() {
@@ -52,7 +52,7 @@ export default function MenuSection() {
           transition={{ duration: 0.7 }}
           className="text-5xl md:text-8xl font-extrabold text-white mb-12 md:mb-16 tracking-wide drop-shadow-md"
         >
-          Ознайомтеся з послугами HardClean
+          Що входить у комплект DWS Cards
         </motion.h2>
 
         {/* 2 columns grid for both mobile and desktop */}

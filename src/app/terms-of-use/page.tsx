@@ -6,7 +6,7 @@ export default function TermsOfUse() {
       {/* Header */}
       <div className="w-full pt-6 pb-6 bg-brand-primary z-50 flex items-center px-6 md:px-16 justify-between shadow-md">
         <Link href="/" className="text-3xl md:text-5xl font-bold text-white tracking-wider cursor-pointer">
-          HardClean
+          DWS Cards
         </Link>
         <Link href="/" className="text-white font-sans font-semibold text-sm tracking-widest uppercase hover:text-brand-link-hover transition-colors">
           &larr; Назад на головну
@@ -20,17 +20,17 @@ export default function TermsOfUse() {
         <div className="space-y-6 text-lg leading-relaxed">
           <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">1. Загальні положення</h2>
           <p>
-            Використовуючи цей сайт та оформлюючи заявку, ви погоджуєтесь з цими Умовами.
+            Використовуючи цей сайт та оформлюючи замовлення, ви погоджуєтесь з цими Умовами.
           </p>
 
-          <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">2. Оформлення заявки</h2>
+          <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">2. Оформлення замовлення</h2>
           <p>
-            Заявка, оформлена через наші контакти або месенджери, є попереднім замовленням послуги. Остаточна вартість та терміни виконання узгоджуються з клієнтом після оцінки обсягу робіт майстром.
+            Заявка, оформлена через наш сайт, телефон або месенджери, є попереднім замовленням на виготовлення NFC-картки. Деталі дизайну, посилання для програмування та спосіб доставки узгоджуються з менеджером.
           </p>
 
-          <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">3. Оплата</h2>
+          <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">3. Оплата та доставка</h2>
           <p>
-            Оплата здійснюється після виконання послуги готівкою або переказом на картку, якщо інше не було заздалегідь узгоджено з майстром.
+            Оплата здійснюється зручним для клієнта способом (переказ або при отриманні). Доставка виконується поштовими службами по всій Україні.
           </p>
 
           <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">4. Відповідальність</h2>

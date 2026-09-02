@@ -13,7 +13,7 @@ export default function HistorySection() {
         <div className="absolute inset-0 bg-white/70"></div>
         
         <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-brand-text relative z-10 text-center mb-4 md:mb-6 drop-shadow-sm px-4 whitespace-nowrap">
-          Як ми працюємо
+          Як це працює
         </h2>
         <div className="w-16 md:w-24 h-1 bg-brand-accent relative z-10 mb-4 md:mb-6"></div>
         <p className="text-brand-body text-lg md:text-2xl font-medium relative z-10 font-sans text-center px-8">
@@ -31,9 +31,9 @@ export default function HistorySection() {
           className="mb-16 md:mb-[25vh]"
         >
           <span className="text-brand-accent font-bold text-xl md:text-2xl tracking-widest uppercase mb-2 md:mb-4 block">01</span>
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Заявка</h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Замовлення</h3>
           <p className="text-lg md:text-xl text-brand-body leading-relaxed font-medium">
-            Телефонуєте нам або надсилаєте фото меблів у Direct <a href="https://www.instagram.com/hard_clean.vinnytsia/" target="_blank" rel="noreferrer" className="hover:underline text-brand-accent hover:text-brand-accent-hover transition-colors">Instagram</a>, <a href="https://www.tiktok.com/@hard_clean.vinnytsia" target="_blank" rel="noreferrer" className="hover:underline text-brand-accent hover:text-brand-accent-hover transition-colors">TikTok</a> чи <a href="https://www.facebook.com/profile.php?id=61582900071021" target="_blank" rel="noreferrer" className="hover:underline text-brand-accent hover:text-brand-accent-hover transition-colors">Facebook</a> — оцінимо вартість за 2 хвилини. Наш майстер одразу узгодить з вами зручний час виїзду.
+            Залишаєте заявку на сайті, телефонуєте або пишете в <a href="https://www.instagram.com/denis__zalizko/" target="_blank" rel="noreferrer" className="hover:underline text-brand-accent hover:text-brand-accent-hover transition-colors">Instagram</a>, <a href="https://www.tiktok.com/@denis__zalizko" target="_blank" rel="noreferrer" className="hover:underline text-brand-accent hover:text-brand-accent-hover transition-colors">TikTok</a> чи <a href="https://t.me/+380961592377" target="_blank" rel="noreferrer" className="hover:underline text-brand-accent hover:text-brand-accent-hover transition-colors">Telegram</a>. Обираєте дизайн картки і ми за 2 хвилини погодимо деталі.
           </p>
         </motion.div>
 
@@ -44,9 +44,9 @@ export default function HistorySection() {
           className="mb-16 md:mb-[25vh]"
         >
           <span className="text-brand-accent font-bold text-xl md:text-2xl tracking-widest uppercase mb-2 md:mb-4 block">02</span>
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Виїзд та обробка</h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Налаштування та доставка</h3>
           <p className="text-lg md:text-xl text-brand-body leading-relaxed font-medium">
-            Майстер приїжджає до вас з професійним обладнанням та безпечною хімією. Чистимо м'які меблі на місці, без потреби кудись їх везти. Весь процес займає лише кілька годин і не заважає вашому звичайному ритму життя.
+            Програмуємо картку під ваш Google-профіль (або обраний тип), перевіряємо що вона працює на будь-якому телефоні, після чого відправляємо Новою поштою чи Укрпоштою.
           </p>
         </motion.div>
 
@@ -57,9 +57,9 @@ export default function HistorySection() {
           className="mb-8 md:mb-[10vh]"
         >
           <span className="text-brand-accent font-bold text-xl md:text-2xl tracking-widest uppercase mb-2 md:mb-4 block">03</span>
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Результат</h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Готово до роботи</h3>
           <p className="text-lg md:text-xl text-brand-body leading-relaxed font-medium">
-            Після чистки та сушіння меблі виглядають і пахнуть як нові — без плям і запахів. Гарантуємо якість виконаної роботи. Ви знову зможете насолоджуватися бездоганною чистотою та свіжістю свого інтер'єру.
+            Ставите картку на стійці або касі. Клієнт підносить телефон — і за секунду вже на сторінці відгуку.
           </p>
         </motion.div>
 

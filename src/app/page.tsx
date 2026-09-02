@@ -47,20 +47,20 @@ export default function Home() {
 
           {/* Desktop Left Navigation Links */}
           <div className="hidden md:flex flex-1 w-full items-center justify-evenly font-sans font-extrabold text-sm tracking-widest uppercase text-white pr-8 lg:pr-16">
-            <a href="#menu" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Послуги</a>
+            <a href="#menu" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Продукти</a>
             <a href="#reviews" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Відгуки</a>
             <a href="#contacts" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Контакти</a>
           </div>
 
           {/* Logo (Center on mobile and desktop) */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl md:text-5xl font-bold text-white tracking-wider cursor-pointer z-50 whitespace-nowrap">
-            <span>HardClean</span>
+            <span>DWS Cards</span>
           </div>
 
           {/* Desktop Right Navigation Links & Cart */}
           <div className="hidden md:flex flex-1 w-full items-center justify-evenly font-sans font-extrabold text-sm tracking-widest uppercase text-white pl-8 lg:pl-16 z-[60]">
             <a href="#about" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Про нас</a>
-            <a href="#history" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Як ми працюємо</a>
+            <a href="#history" className="hover:text-brand-link-hover transition-colors cursor-pointer whitespace-nowrap">Як працює</a>
             <AnimatedThemeToggler
               className="flex items-center justify-center text-white [&>svg]:w-9 [&>svg]:h-9"
               aria-label="Темна тема"
@@ -78,8 +78,8 @@ export default function Home() {
         {isMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-brand-primary pb-6 px-6 shadow-xl flex flex-col gap-4 font-sans font-semibold text-lg tracking-widest uppercase text-white md:hidden z-50 border-t border-white/10">
             <a href="#about" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block mt-2">Про нас</a>
-            <a href="#history" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block">Як ми працюємо</a>
-            <a href="#menu" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block">Послуги</a>
+            <a href="#history" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block">Як працює</a>
+            <a href="#menu" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block">Продукти</a>
             <a href="#reviews" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block">Відгуки</a>
             <a href="#contacts" onClick={() => setIsMenuOpen(false)} className="hover:text-brand-link-hover transition-colors cursor-pointer block">Контакти</a>
           </div>
@@ -112,7 +112,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 1.8 }}
             className="text-4xl md:text-6xl xl:text-7xl font-serif font-bold text-brand-text leading-tight mb-6 max-w-5xl"
           >
-            Поверніть<br />меблям вигляд<br />як новий
+            Більше 5★ відгуків<br />без прохань і<br />незручних розмов
           </motion.h1>
 
           {/* Subheadline */}
@@ -122,7 +122,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 2.0 }}
             className="text-lg md:text-2xl text-brand-body font-medium mb-10 max-w-lg leading-relaxed"
           >
-            Виїзна хімчистка диванів, крісел, матраців та килимів у Вінниці. Приїжджаємо з усім обладнанням — ви навіть пальцем не поворухнете.
+            NFC-картка для бізнесу. Без QR, без камери, без зайвих кліків.
           </motion.p>
 
           {/* Buttons */}
@@ -133,16 +133,16 @@ export default function Home() {
             className="flex flex-row w-full sm:w-auto gap-2 sm:gap-4"
           >
             <a
-              href="#menu"
+              href="#contacts"
               className="flex-1 sm:flex-none flex items-center justify-center text-center bg-brand-accent hover:bg-brand-accent-hover text-white px-2 sm:px-12 py-3 sm:py-4 rounded-full text-[13px] sm:text-lg font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 leading-tight"
             >
-              Наші послуги
+              Замовити картку
             </a>
             <a
-              href="tel:+380962211273"
+              href="tel:+380961592377"
               className="flex-1 sm:flex-none flex items-center justify-center text-center whitespace-nowrap bg-white hover:bg-blue-50/50 text-brand-accent border-2 border-brand-accent px-2 sm:px-12 py-3 sm:py-4 rounded-full text-[13px] sm:text-lg font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 leading-tight"
             >
-              096 221 12 73
+              096 159 23 77
             </a>
           </motion.div>
         </div>

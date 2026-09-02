@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
       {/* Header */}
       <div className="w-full pt-6 pb-6 bg-brand-primary z-50 flex items-center px-6 md:px-16 justify-between shadow-md">
         <Link href="/" className="text-3xl md:text-5xl font-bold text-white tracking-wider cursor-pointer">
-          HardClean
+          DWS Cards
         </Link>
         <Link href="/" className="text-white font-sans font-semibold text-sm tracking-widest uppercase hover:text-brand-link-hover transition-colors">
           &larr; Назад на головну
@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
         
         <div className="space-y-6 text-lg leading-relaxed">
           <p>
-            Ця Політика конфіденційності описує, як HardClean (далі — «Компанія», «ми») обробляє персональні дані користувачів сайту.
+            Ця Політика конфіденційності описує, як DWS Cards (далі — «Компанія», «ми») обробляє персональні дані користувачів сайту.
           </p>
 
           <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">1. Які дані ми збираємо</h2>
@@ -27,14 +27,14 @@ export default function PrivacyPolicy() {
           <ul className="list-disc list-inside ml-4 space-y-2">
             <li>Ім'я</li>
             <li>Номер телефону</li>
-            <li>Адресу для виїзду майстра</li>
-            <li>Фотографії меблів та побажання клієнта</li>
+            <li>Адресу або відділення для доставки картки</li>
+            <li>Посилання на Google-профіль або інші платформи для програмування картки</li>
           </ul>
 
           <h2 className="text-2xl font-bold text-brand-text mt-8 mb-4">2. Для чого ми використовуємо ці дані</h2>
           <ul className="list-disc list-inside ml-4 space-y-2">
-            <li>Для зв'язку з клієнтом та надання консультацій</li>
-            <li>Для оцінки вартості та організації виїзду майстра</li>
+            <li>Для зв'язку з клієнтом та узгодження замовлення</li>
+            <li>Для програмування NFC-карток та організації доставки</li>
             <li>Для покращення якості обслуговування</li>
           </ul>
 
