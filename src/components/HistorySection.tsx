@@ -12,16 +12,7 @@ export default function HistorySection() {
       {/* Left Side: Header Image (Sticky only on desktop) */}
       <div className="w-full md:w-1/2 h-[40vh] md:h-screen relative md:sticky top-0 bg-brand-bg flex flex-col items-center justify-center overflow-hidden">
         {/* Light background image */}
-        <div
-          className="absolute inset-0 opacity-60 bg-cover bg-center transition-all duration-500"
-          style={{
-            backgroundImage: `url(${
-              currentTheme.id === "instagram"
-                ? "/insta-how-to-order.jpg"
-                : "/sofa.jpeg"
-            })`,
-          }}
-        ></div>
+        <div className="absolute inset-0 opacity-60 bg-[url('/sofa.jpeg')] bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-white/70"></div>
         
         <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-brand-text relative z-10 text-center mb-4 md:mb-6 drop-shadow-sm px-4 whitespace-nowrap">

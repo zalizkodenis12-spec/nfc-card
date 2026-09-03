@@ -74,15 +74,8 @@ export default function MenuSection() {
               transition={{ duration: 0.6, delay: idx * 0.12 }}
               className="group flex flex-col items-center"
             >
-              {/* Kit Image / Placeholder */}
-              <div className="w-full aspect-square bg-white rounded-3xl shadow-lg mb-4 md:mb-6 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl overflow-hidden flex items-center justify-center p-2 sm:p-4">
-                {currentTheme.id === "instagram" ? (
-                  <img
-                    src={`/kit-instagram-${idx + 1}.jpeg`}
-                    alt={item.name}
-                    className="w-full h-full object-contain"
-                  />
-                ) : null}
+              {/* Light blue placeholder */}
+              <div className="w-full aspect-square bg-white rounded-3xl shadow-lg mb-4 md:mb-6 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl">
               </div>
 
               {/* Text Info */}
