@@ -1,16 +1,18 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
+
 @theme {
-  --color-brand-primary: #0B2C6B;
-  --color-brand-primary-dark: #061B44;
-  --color-brand-accent: #1256B8;
-  --color-brand-accent-hover: #0B3D8A;
-  --color-brand-link-hover: #7CA7F0;
+  --color-brand-primary: var(--theme-primary, #0B2C6B);
+  --color-brand-primary-dark: var(--theme-primary-dark, #071F4C);
+  --color-brand-accent: var(--theme-accent, #1256B8);
+  --color-brand-accent-hover: var(--theme-accent-hover, #093F8C);
+  --color-brand-link-hover: var(--theme-link-hover, #7CA7F0);
   --color-brand-bg: #FFFFFF;
-  --color-brand-text: #0B2C6B;
+  --color-brand-text: var(--theme-primary, #0B2C6B);
   --color-brand-body: #333333;
   --color-brand-star: #FBBC04;
+  --color-brand-light: var(--theme-light, #F0F5FF);
 
   --color-background: #FFFFFF;
   --color-foreground: #333333;
@@ -18,6 +20,14 @@
 
 @layer base {
   :root {
+    --theme-primary: #0B2C6B;
+    --theme-primary-dark: #071F4C;
+    --theme-accent: #1256B8;
+    --theme-accent-hover: #093F8C;
+    --theme-link-hover: #7CA7F0;
+    --theme-light: #F0F5FF;
+    --theme-light-border: rgba(11, 44, 107, 0.2);
+
     --background: #FFFFFF;
     --foreground: #333333;
   }
@@ -30,6 +40,12 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global smooth transition for theme switching */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 400ms ease, border-color 400ms ease, color 400ms ease, fill 400ms ease;
 }
 
 /* Hide scrollbar for seamless experience */

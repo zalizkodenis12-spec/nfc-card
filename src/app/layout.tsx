@@ -9,6 +9,7 @@ const caveat = Caveat({
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { CartProvider } from "@/context/CartContext";
+import { CardThemeProvider } from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
   title: "DWS Cards - NFC-картки для збору відгуків Google",
@@ -24,18 +25,20 @@ export default function RootLayout({
     <html
       lang="uk"
       suppressHydrationWarning
-      className={`${caveat.className} h-full antialiased`}
+      className={`${caveat.className} h-full antialiased theme-transition`}
     >
       <body className="min-h-full flex flex-col bg-white text-brand-body selection:bg-brand-accent selection:text-white">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-        >
-          <CartProvider>
-            {children}
-          </CartProvider>
-        </ThemeProvider>
+        <CardThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem={false}
+          >
+            <CartProvider>
+              {children}
+            </CartProvider>
+          </ThemeProvider>
+        </CardThemeProvider>
       </body>
     </html>
   );
