@@ -40,10 +40,10 @@ export default function Footer() {
               href="https://www.google.com/maps/search/с.+Агрономічне,+вул.+Наукова+9"
               target="_blank"
               rel="noreferrer"
-              className="group flex items-center gap-2.5 md:gap-3.5 mb-3.5 md:mb-4 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors text-left"
+              className="group flex items-center gap-2.5 md:gap-3.5 mb-3 md:mb-3.5 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors text-left"
             >
-              <div className="w-7 h-7 md:w-9 md:h-9 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
-                <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-6 h-6 md:w-7 md:h-7 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
+                <svg className="w-3 h-3 md:w-3.5 md:h-3.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                 </svg>
               </div>
@@ -53,10 +53,10 @@ export default function Footer() {
             {/* Phone */}
             <a
               href="tel:+380961592377"
-              className="group flex items-center gap-2.5 md:gap-3.5 mb-3.5 md:mb-4 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors"
+              className="group flex items-center gap-2.5 md:gap-3.5 mb-3 md:mb-3.5 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors"
             >
-              <div className="w-7 h-7 md:w-9 md:h-9 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
-                <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-6 h-6 md:w-7 md:h-7 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
+                <svg className="w-3 h-3 md:w-3.5 md:h-3.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                 </svg>
               </div>
@@ -70,8 +70,8 @@ export default function Footer() {
               rel="noreferrer"
               className="group flex items-center gap-2.5 md:gap-3.5 mb-4 md:mb-6 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors"
             >
-              <div className="w-7 h-7 md:w-9 md:h-9 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
-                <svg className="w-3.5 h-3.5 md:w-5 md:h-5 translate-x-[-1px]" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-6 h-6 md:w-7 md:h-7 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
+                <svg className="w-3 h-3 md:w-3.5 md:h-3.5 translate-x-[-1px]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.694c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.435z" />
                 </svg>
               </div>
