@@ -1,10 +1,20 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import { useCardTheme } from "@/context/ThemeContext";
 
 export default function AboutSection() {
+  const { currentTheme } = useCardTheme();
+
+  const marqueeText =
+    currentTheme.id === "instagram"
+      ? "DWS CARDS • INSTAGRAM • ПІДПИСНИКИ • DWS CARDS • INSTAGRAM • "
+      : "DWS CARDS • ВІДГУКИ • 5 ЗІРОК • DWS CARDS • ВІДГУКИ • 5 ЗІРОК • ";
+
   return (
     <section id="about" className="relative w-full bg-brand-primary z-20 pt-16 md:pt-24 pb-16 md:pb-32">
       
@@ -30,7 +40,7 @@ export default function AboutSection() {
             transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
             className="text-[16vw] md:text-[12vw] font-black uppercase tracking-tighter"
           >
-            DWS CARDS • ВІДГУКИ • 5 ЗІРОК • DWS CARDS • ВІДГУКИ • 5 ЗІРОК • 
+            {marqueeText}
           </motion.div>
         </div>
         <div className="absolute bottom-1/4 left-0 w-full flex whitespace-nowrap opacity-10 rotate-2 scale-110">
@@ -39,7 +49,7 @@ export default function AboutSection() {
             transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
             className="text-[16vw] md:text-[12vw] font-black uppercase tracking-tighter"
           >
-            DWS CARDS • ВІДГУКИ • 5 ЗІРОК • DWS CARDS • ВІДГУКИ • 5 ЗІРОК • 
+            {marqueeText}
           </motion.div>
         </div>
       </div>
@@ -54,7 +64,9 @@ export default function AboutSection() {
         >
           <h2 className="text-5xl md:text-8xl font-serif font-bold mb-6 md:mb-8 drop-shadow-sm">Чому це працює?</h2>
           <p className="text-xl md:text-3xl font-medium max-w-4xl mx-auto leading-relaxed mb-8 md:mb-24">
-            Клієнти рідко пишуть відгуки самі — їм ліньки шукати вас в Google чи возитись з QR-кодом. NFC-картка прибирає всі зайві кроки: один дотик — і відгук лишити простіше, ніж не лишити.
+            {currentTheme.id === "instagram"
+              ? "Клієнти рідко підписуються самі — їм ліньки шукати вас в Instagram чи возитись з QR-кодом. NFC-картка прибирає всі зайві кроки: один дотик — і підписатися простіше, ніж не підписатися."
+              : "Клієнти рідко пишуть відгуки самі — їм ліньки шукати вас в Google чи возитись з QR-кодом. NFC-картка прибирає всі зайві кроки: один дотик — і відгук лишити простіше, ніж не лишити."}
           </p>
         </motion.div>
 

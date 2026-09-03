@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useCardTheme } from "@/context/ThemeContext";
 
 export default function HistorySection() {
+  const { currentTheme } = useCardTheme();
+
   return (
     <section id="history" className="relative w-full bg-brand-bg z-10 flex flex-col md:flex-row">
       
@@ -46,7 +49,9 @@ export default function HistorySection() {
           <span className="text-brand-accent font-bold text-xl md:text-2xl tracking-widest uppercase mb-2 md:mb-4 block">02</span>
           <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Налаштування та доставка</h3>
           <p className="text-lg md:text-xl text-brand-body leading-relaxed font-medium">
-            Програмуємо картку під ваш Google-профіль (або обраний тип), перевіряємо що вона працює на будь-якому телефоні, після чого відправляємо Новою поштою чи Укрпоштою.
+            {currentTheme.id === "instagram"
+              ? "Програмуємо картку під ваш Instagram-акаунт (або обраний тип), перевіряємо що вона працює на будь-якому телефоні, після чого відправляємо Новою поштою чи Укрпоштою."
+              : "Програмуємо картку під ваш Google-профіль (або обраний тип), перевіряємо що вона працює на будь-якому телефоні, після чого відправляємо Новою поштою чи Укрпоштою."}
           </p>
         </motion.div>
 
@@ -59,7 +64,9 @@ export default function HistorySection() {
           <span className="text-brand-accent font-bold text-xl md:text-2xl tracking-widest uppercase mb-2 md:mb-4 block">03</span>
           <h3 className="text-3xl md:text-5xl font-serif font-bold text-brand-text mb-4 md:mb-6 leading-tight">Готово до роботи</h3>
           <p className="text-lg md:text-xl text-brand-body leading-relaxed font-medium">
-            Ставите картку на стійці або касі. Клієнт підносить телефон — і за секунду вже на сторінці відгуку.
+            {currentTheme.id === "instagram"
+              ? "Ставите картку на стійці або касі. Клієнт підносить телефон — і за секунду вже на вашій Instagram-сторінці."
+              : "Ставите картку на стійці або касі. Клієнт підносить телефон — і за секунду вже на сторінці відгуку."}
           </p>
         </motion.div>
 

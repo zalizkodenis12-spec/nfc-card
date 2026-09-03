@@ -1,15 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const SERVICES = [
-  { id: 1, name: "NFC-картка з програмуванням" },
-  { id: 2, name: "Вологозахист та міцний корпус" },
-  { id: 3, name: "Налаштування під ваш Google-профіль" },
-  { id: 4, name: "Дизайн картки під бренд закладу" },
-];
+import { useCardTheme } from "@/context/ThemeContext";
 
 export default function MenuSection() {
+  const { currentTheme } = useCardTheme();
+
+  const services = [
+    { id: 1, name: "NFC-картка з програмуванням" },
+    { id: 2, name: "Вологозахист та міцний корпус" },
+    {
+      id: 3,
+      name:
+        currentTheme.id === "instagram"
+          ? "Налаштування під ваш Instagram-акаунт"
+          : "Налаштування під ваш Google-профіль",
+    },
+    { id: 4, name: "Дизайн картки під бренд закладу" },
+  ];
   return (
     <section id="menu" className="relative w-full bg-brand-primary z-20 pb-32">
       {/* Top Smoother Wavy SVG Divider */}
@@ -57,7 +65,7 @@ export default function MenuSection() {
 
         {/* 2 columns grid for both mobile and desktop */}
         <div className="grid grid-cols-2 gap-x-4 md:gap-x-12 gap-y-12 md:gap-y-16">
-          {SERVICES.map((item, idx) => (
+          {services.map((item, idx) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 50 }}

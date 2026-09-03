@@ -36,7 +36,7 @@ export default function HeroSection() {
           </h1>
           <h2 style={{ fontSize: "22px", fontWeight: 900, margin: 0, textTransform: "uppercase", letterSpacing: "0.5px", fontFamily: "inherit" }}>
             {currentTheme.subheadlinePrefix}{" "}
-            <span style={{ color: currentTheme.id === "google" ? "#FBBC04" : "#FFFFFF" }}>
+            <span style={{ color: currentTheme.highlightColor }}>
               {currentTheme.subheadlineHighlight}
             </span>
           </h2>
@@ -148,11 +148,7 @@ export default function HeroSection() {
         {/* Буліти */}
         <div style={{ padding: "25px 20px 40px" }}>
           <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {[
-              "Один дотик — і клієнт на сторінці відгуків Google",
-              "Без камери, без QR та зайвих кроків",
-              "Підходить для будь-якого закладу та смартфона",
-            ].map((text, i) => (
+            {currentTheme.bullets.map((text, i) => (
               <li key={i} style={{ position: "relative", paddingLeft: "45px", marginBottom: "20px", fontSize: "17px", lineHeight: 1.3, color: "#000", minHeight: "32px", display: "flex", alignItems: "center" }}>
                 <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "30px", height: "30px", background: "var(--theme-primary)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px", transition: "background-color 400ms ease" }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ width: "16px", height: "16px" }}>
@@ -179,7 +175,7 @@ export default function HeroSection() {
           </h1>
           <h2 style={{ fontSize: "32px", fontWeight: 900, margin: 0, textTransform: "uppercase", letterSpacing: "1px", fontFamily: "inherit" }}>
             {currentTheme.subheadlinePrefix}{" "}
-            <span style={{ color: currentTheme.id === "google" ? "#FBBC04" : "#FFFFFF" }}>
+            <span style={{ color: currentTheme.highlightColor }}>
               {currentTheme.subheadlineHighlight}
             </span>
           </h2>
@@ -301,11 +297,7 @@ export default function HeroSection() {
           {/* Буліти — збільшені, комфортна ширина й читабельність */}
           <div style={{ padding: "45px 15px 70px" }}>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {[
-                "Один дотик — і клієнт на сторінці відгуків Google",
-                "Без камери, без QR та зайвих кроків",
-                "Підходить для будь-якого закладу та смартфона",
-              ].map((text, i) => (
+              {currentTheme.bullets.map((text, i) => (
                 <li key={i} style={{ position: "relative", paddingLeft: "65px", marginBottom: "28px", fontSize: "23px", lineHeight: 1.4, color: "#111", minHeight: "44px", display: "flex", alignItems: "center", fontWeight: 700 }}>
                   <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "44px", height: "44px", background: "var(--theme-primary)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "10px", transition: "background-color 400ms ease" }}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ width: "24px", height: "24px" }}>
@@ -325,3 +317,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

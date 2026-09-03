@@ -9,6 +9,8 @@ export interface CardTheme {
   headlinePrefix: string;
   subheadlinePrefix: string;
   subheadlineHighlight: string;
+  highlightColor: string;
+  bullets: string[];
   productId: string;
   productName: string;
   colors: {
@@ -30,6 +32,12 @@ export const CARD_THEMES: CardTheme[] = [
     headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
     subheadlinePrefix: "БІЛЬШЕ",
     subheadlineHighlight: "5★ ВІДГУКІВ",
+    highlightColor: "#FBBC04",
+    bullets: [
+      "Один дотик — і клієнт на сторінці відгуків Google",
+      "Без камери, без QR та зайвих кроків",
+      "Підходить для будь-якого закладу та смартфона",
+    ],
     productId: "nfc-card-google-maps",
     productName: "NFC-картка Google Maps",
     colors: {
@@ -49,16 +57,22 @@ export const CARD_THEMES: CardTheme[] = [
     headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
     subheadlinePrefix: "БІЛЬШЕ",
     subheadlineHighlight: "ПІДПИСНИКІВ В INSTAGRAM",
+    highlightColor: "#FFC107",
+    bullets: [
+      "Один дотик — і клієнт у вашому Instagram",
+      "Без камери, без QR та зайвих кроків",
+      "Підходить для будь-якого закладу та смартфона",
+    ],
     productId: "nfc-card-instagram",
     productName: "NFC-картка Instagram",
     colors: {
-      primary: "#C2410C",
-      primaryDark: "#9A3412",
-      accent: "#EA580C",
-      accentHover: "#C2410C",
+      primary: "#C84812", // Насичений теплий оранжевий з низу карти Instagram
+      primaryDark: "#993306",
+      accent: "#E65A18",
+      accentHover: "#C84812",
       linkHover: "#FDBA74",
       light: "#FFF7ED",
-      lightBorder: "rgba(194, 65, 12, 0.2)",
+      lightBorder: "rgba(200, 72, 18, 0.25)",
     },
   },
 ];
