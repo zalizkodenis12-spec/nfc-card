@@ -118,13 +118,13 @@ export default function HeroSection() {
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          💻 КОМП'ЮТЕРНА ВЕРСІЯ (лише для екранів >= 768px, розширена)
+          💻 КОМП'ЮТЕРНА ВЕРСІЯ (на всю ширину екрана, повне фото без обрізань)
           ───────────────────────────────────────────────────────────── */}
-      <div className="hidden md:block" style={{ maxWidth: "860px", margin: "0 auto", background: "#fff", color: "#000", overflow: "hidden" }}>
+      <div className="hidden md:block w-full bg-white text-black overflow-hidden">
 
-        {/* Заголовок — збільшений для комп'ютера */}
-        <div style={{ background: "#0B2C6B", color: "#fff", textAlign: "center", padding: "35px 20px" }}>
-          <h1 style={{ fontSize: "36px", fontWeight: 900, margin: "0 0 10px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: "inherit" }}>
+        {/* Заголовок — розтягнутий на 100% ширини екрана */}
+        <div className="w-full bg-[#0B2C6B] text-white text-center py-10 px-4">
+          <h1 style={{ fontSize: "38px", fontWeight: 900, margin: "0 0 10px", textTransform: "uppercase", letterSpacing: "1px", fontFamily: "inherit" }}>
             NFC-КАРТКА ДЛЯ БІЗНЕСУ
           </h1>
           <h2 style={{ fontSize: "30px", fontWeight: 900, margin: 0, textTransform: "uppercase", letterSpacing: "1px", fontFamily: "inherit" }}>
@@ -132,92 +132,99 @@ export default function HeroSection() {
           </h2>
         </div>
 
-        {/* Фото товару — на повну ширину розширеного блоку */}
-        <div style={{ width: "100%", overflow: "hidden", maxHeight: "640px" }}>
+        {/* Фото товару — видно ПОВНІСТЮ (без обрізання знизу чи зверху!) */}
+        <div className="w-full flex justify-center bg-white py-2">
           <img
             src="/nfc-card.jpg"
             alt="DWS Cards NFC картка"
-            style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+            className="w-full max-w-[960px] h-auto object-contain mx-auto block"
           />
         </div>
 
-        {/* Смуга переваг — розширена з більшим шрифтом */}
-        <div style={{ display: "flex", background: "#0B2C6B", color: "#fff", padding: "20px 20px", justifyContent: "space-between" }}>
-          {[
-            { label: "Створення\nза 2-3 дні" },
-            { label: "Знижки на\nоптові замовлення" },
-            { label: "Оплата при\nотриманні" },
-          ].map(({ label }, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", fontSize: "16px", lineHeight: 1.3, flex: 1, justifyContent: "center" }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ width: "28px", height: "28px", marginRight: "10px", flexShrink: 0 }}>
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                <polyline points="9 12 11 14 15 10"></polyline>
-              </svg>
-              <span style={{ whiteSpace: "pre-line", fontWeight: 600 }}>{label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Блок цін — збільшений під десктоп */}
-        <div style={{ display: "flex", position: "relative", background: "#fff", marginTop: "25px" }}>
-          <div style={{ width: "60%", padding: "28px 75px 28px 20px", textAlign: "center", background: "#fff" }}>
-            <span style={{ display: "block", fontSize: "22px", marginBottom: "6px", color: "#0B2C6B", fontWeight: 700 }}>Стара ціна:</span>
-            <span style={{ display: "block", fontSize: "44px", fontWeight: 900, textDecoration: "line-through", color: "#0B2C6B" }}>799 грн</span>
-          </div>
-          <div style={{ width: "55%", background: "#0B2C6B", color: "#fff", padding: "28px 20px", paddingLeft: "10%", textAlign: "center", clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)", marginLeft: "-15%", position: "relative", zIndex: 1 }}>
-            <span style={{ display: "block", fontSize: "22px", marginBottom: "6px", fontWeight: 700 }}>Акційна ціна:</span>
-            <span style={{ display: "block", fontSize: "48px", fontWeight: 900 }}>499 грн</span>
-          </div>
-        </div>
-
-        {/* Кнопка «КУПИТИ ЗАРАЗ» — велика та масивна */}
-        <div style={{ padding: "30px 30px 0" }}>
-          <button
-            type="button"
-            onClick={handleBuyNow}
-            style={{
-              display: "block",
-              width: "100%",
-              background: "#0B2C6B",
-              color: "#fff",
-              padding: "26px",
-              fontSize: "28px",
-              fontWeight: 900,
-              borderRadius: "12px",
-              textAlign: "center",
-              textDecoration: "none",
-              textTransform: "uppercase",
-              cursor: "pointer",
-              border: "none",
-              letterSpacing: "0.5px",
-              boxShadow: "0 10px 25px -5px rgba(11, 44, 107, 0.3)",
-              transition: "transform 0.15s ease, background 0.15s ease",
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.background = "#071F4C")}
-            onMouseOut={(e) => (e.currentTarget.style.background = "#0B2C6B")}
-          >
-            КУПИТИ ЗАРАЗ
-          </button>
-        </div>
-
-        {/* Буліти — більший розмір і відступи */}
-        <div style={{ padding: "35px 35px 55px" }}>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        {/* Смуга переваг — розтягнута на 100% ширини екрана */}
+        <div className="w-full bg-[#0B2C6B] text-white py-6 px-6">
+          <div className="max-w-5xl mx-auto flex justify-between items-center">
             {[
-              "Один дотик — і клієнт на сторінці відгуків Google",
-              "Без камери, без QR та зайвих кроків",
-              "Підходить для будь-якого закладу та смартфона",
-            ].map((text, i) => (
-              <li key={i} style={{ position: "relative", paddingLeft: "55px", marginBottom: "24px", fontSize: "20px", lineHeight: 1.4, color: "#111", minHeight: "38px", display: "flex", alignItems: "center", fontWeight: 600 }}>
-                <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "38px", height: "38px", background: "#0B2C6B", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px" }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ width: "20px", height: "20px" }}>
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                {text}
-              </li>
+              { label: "Створення\nза 2-3 дні" },
+              { label: "Знижки на\nоптові замовлення" },
+              { label: "Оплата при\nотриманні" },
+            ].map(({ label }, i) => (
+              <div key={i} className="flex items-center justify-center flex-1 text-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 mr-3 shrink-0">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <polyline points="9 12 11 14 15 10"></polyline>
+                </svg>
+                <span className="text-base lg:text-lg font-bold whitespace-pre-line text-left">{label}</span>
+              </div>
             ))}
-          </ul>
+          </div>
+        </div>
+
+        {/* Нижня частина блоку — відцентрована та простора */}
+        <div className="max-w-[760px] mx-auto px-4">
+
+          {/* Блок цін */}
+          <div style={{ display: "flex", position: "relative", background: "#fff", marginTop: "30px" }}>
+            <div style={{ width: "60%", padding: "28px 75px 28px 20px", textAlign: "center", background: "#fff" }}>
+              <span style={{ display: "block", fontSize: "22px", marginBottom: "6px", color: "#0B2C6B", fontWeight: 700 }}>Стара ціна:</span>
+              <span style={{ display: "block", fontSize: "44px", fontWeight: 900, textDecoration: "line-through", color: "#0B2C6B" }}>799 грн</span>
+            </div>
+            <div style={{ width: "55%", background: "#0B2C6B", color: "#fff", padding: "28px 20px", paddingLeft: "10%", textAlign: "center", clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)", marginLeft: "-15%", position: "relative", zIndex: 1 }}>
+              <span style={{ display: "block", fontSize: "22px", marginBottom: "6px", fontWeight: 700 }}>Акційна ціна:</span>
+              <span style={{ display: "block", fontSize: "48px", fontWeight: 900 }}>499 грн</span>
+            </div>
+          </div>
+
+          {/* Кнопка «КУПИТИ ЗАРАЗ» */}
+          <div style={{ padding: "30px 0 0" }}>
+            <button
+              type="button"
+              onClick={handleBuyNow}
+              style={{
+                display: "block",
+                width: "100%",
+                background: "#0B2C6B",
+                color: "#fff",
+                padding: "26px",
+                fontSize: "28px",
+                fontWeight: 900,
+                borderRadius: "12px",
+                textAlign: "center",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                cursor: "pointer",
+                border: "none",
+                letterSpacing: "0.5px",
+                boxShadow: "0 10px 25px -5px rgba(11, 44, 107, 0.3)",
+                transition: "transform 0.15s ease, background 0.15s ease",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.background = "#071F4C")}
+              onMouseOut={(e) => (e.currentTarget.style.background = "#0B2C6B")}
+            >
+              КУПИТИ ЗАРАЗ
+            </button>
+          </div>
+
+          {/* Буліти */}
+          <div style={{ padding: "35px 10px 60px" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {[
+                "Один дотик — і клієнт на сторінці відгуків Google",
+                "Без камери, без QR та зайвих кроків",
+                "Підходить для будь-якого закладу та смартфона",
+              ].map((text, i) => (
+                <li key={i} style={{ position: "relative", paddingLeft: "55px", marginBottom: "24px", fontSize: "20px", lineHeight: 1.4, color: "#111", minHeight: "38px", display: "flex", alignItems: "center", fontWeight: 600 }}>
+                  <div style={{ position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", width: "38px", height: "38px", background: "#0B2C6B", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "8px" }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ width: "20px", height: "20px" }}>
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
 
       </div>
