@@ -76,13 +76,15 @@ export default function MenuSection() {
             >
               {/* Card Image */}
               <div className="w-full aspect-square rounded-2xl md:rounded-3xl shadow-lg mb-4 md:mb-6 transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl overflow-hidden bg-white relative">
-                {currentTheme.id === "instagram" ? (
-                  <img
-                    src={`/kit-instagram-${idx + 1}.jpeg`}
-                    alt={item.name}
-                    className="w-full h-full object-cover block"
-                  />
-                ) : null}
+                <img
+                  src={
+                    currentTheme.id === "instagram"
+                      ? `/kit-instagram-${idx + 1}.jpeg`
+                      : `/kit-google-${idx + 1}.jpeg`
+                  }
+                  alt={item.name}
+                  className="w-full h-full object-cover block"
+                />
               </div>
 
               {/* Text Info */}
