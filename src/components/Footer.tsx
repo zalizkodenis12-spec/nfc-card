@@ -32,23 +32,51 @@ export default function Footer() {
         {/* Contacts & Socials side-by-side on mobile */}
         <div className="flex flex-row justify-between w-full text-left md:contents">
           {/* Contacts */}
-          <div className="flex flex-col items-start w-[48%] md:w-full md:max-w-[280px]">
+          <div className="flex flex-col items-start w-[48%] md:w-full md:max-w-[300px]">
             <h3 className="text-lg md:text-2xl font-bold mb-4 md:mb-6 font-serif">Контакти</h3>
-            <p className="text-white mb-3 text-xs md:text-xl flex items-start gap-2 font-semibold">
-              <span className="text-base md:text-2xl leading-none">📍</span> 
-              <a href="https://www.google.com/maps/search/с.+Агрономічне,+вул.+Наукова+9" target="_blank" rel="noreferrer" className="hover:underline text-left">
-                с. Агрономічне, вул. Наукова 9
-              </a>
-            </p>
-            <p className="text-white mb-3 text-xs md:text-xl flex items-center gap-2 font-semibold">
-              <span className="text-base md:text-2xl">📞</span> <a href="tel:+380961592377" className="hover:underline">096 159 23 77</a>
-            </p>
-            <p className="text-white mb-4 md:mb-6 text-xs md:text-xl flex items-center gap-2 font-semibold">
-              <svg className="w-4 h-4 md:w-6 md:h-6 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.196 1.006.128.832.942z"/></svg>
-              <a href="https://t.me/absolutikdenchik" target="_blank" rel="noreferrer" className="hover:underline">
-                @absolutikdenchik
-              </a>
-            </p>
+
+            {/* Address */}
+            <a
+              href="https://www.google.com/maps/search/с.+Агрономічне,+вул.+Наукова+9"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-2.5 md:gap-3.5 mb-3.5 md:mb-4 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors text-left"
+            >
+              <div className="w-7 h-7 md:w-9 md:h-9 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
+                <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+              </div>
+              <span className="hover:underline">с. Агрономічне, вул. Наукова 9</span>
+            </a>
+
+            {/* Phone */}
+            <a
+              href="tel:+380961592377"
+              className="group flex items-center gap-2.5 md:gap-3.5 mb-3.5 md:mb-4 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors"
+            >
+              <div className="w-7 h-7 md:w-9 md:h-9 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
+                <svg className="w-3.5 h-3.5 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
+              </div>
+              <span className="hover:underline">096 159 23 77</span>
+            </a>
+
+            {/* Telegram */}
+            <a
+              href="https://t.me/absolutikdenchik"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-2.5 md:gap-3.5 mb-4 md:mb-6 text-xs md:text-xl font-semibold text-white hover:text-brand-link-hover transition-colors"
+            >
+              <div className="w-7 h-7 md:w-9 md:h-9 bg-white text-brand-primary rounded-full flex items-center justify-center shadow-md group-hover:scale-110 transition-transform shrink-0">
+                <svg className="w-3.5 h-3.5 md:w-5 md:h-5 translate-x-[-1px]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l-.313 4.694c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.435z" />
+                </svg>
+              </div>
+              <span className="hover:underline">@absolutikdenchik</span>
+            </a>
           </div>
 
           {/* Socials */}
