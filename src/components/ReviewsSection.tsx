@@ -26,14 +26,12 @@ const REVIEWS = [
   },
 ];
 
-const BURGER_IMAGES = [
-  "/chair.jpeg",
-  "/chair.jpeg",
-  "/chair.jpeg",
-  "/chair.jpeg",
-];
+import { useCardTheme } from "@/context/ThemeContext";
 
 export default function ReviewsSection() {
+  const { currentTheme } = useCardTheme();
+  const bgImage = currentTheme.id === "instagram" ? "/reviews-bg-instagram.jpg" : "/reviews-bg-google.jpg";
+
   return (
     <section id="reviews" className="relative w-full bg-brand-bg z-10 py-16 md:py-32 overflow-hidden min-h-[90vh] flex flex-col justify-center">
       
@@ -45,12 +43,12 @@ export default function ReviewsSection() {
           className="flex gap-16 min-w-max items-center"
         >
           {/* Repeat images a few times to ensure infinite scroll */}
-          {[...BURGER_IMAGES, ...BURGER_IMAGES, ...BURGER_IMAGES, ...BURGER_IMAGES].map((src, i) => (
+          {Array(16).fill(bgImage).map((src, i) => (
             <div key={i} className="w-[250px] h-[250px] md:w-[450px] md:h-[450px] rounded-[2rem] md:rounded-[3rem] overflow-hidden drop-shadow-xl shrink-0">
               <img 
                 src={src} 
                 alt="Background pattern" 
-                className={`w-full h-full object-cover transition-transform ${i % 2 !== 0 ? '-scale-x-100' : ''}`} 
+                className={`w-full h-full object-cover transition-transform duration-500 ${i % 2 !== 0 ? '-scale-x-100' : ''}`} 
               />
             </div>
           ))}
