@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCart } from "@/context/CartContext";
 
@@ -132,12 +132,13 @@ export default function HeroSection() {
           </h2>
         </div>
 
-        {/* Фото товару — видно ПОВНІСТЮ (без обрізання знизу чи зверху!) */}
-        <div className="w-full flex justify-center bg-white py-2">
+        {/* Фото товару — розтягнуто на 100% ширини монітора від краю до краю */}
+        <div className="w-full bg-white">
           <img
             src="/nfc-card.jpg"
             alt="DWS Cards NFC картка"
-            className="w-full max-w-[960px] h-auto object-contain mx-auto block"
+            className="w-full h-auto block"
+            style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
 
