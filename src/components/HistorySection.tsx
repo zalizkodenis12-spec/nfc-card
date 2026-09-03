@@ -13,7 +13,7 @@ export default function HistorySection() {
         <div className="absolute inset-0 bg-white/70"></div>
         
         <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-brand-text relative z-10 text-center mb-4 md:mb-6 drop-shadow-sm px-4 whitespace-nowrap">
-          Як це працює
+          Як замовити
         </h2>
         <div className="w-16 md:w-24 h-1 bg-brand-accent relative z-10 mb-4 md:mb-6"></div>
         <p className="text-brand-body text-lg md:text-2xl font-medium relative z-10 font-sans text-center px-8">
