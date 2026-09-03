@@ -73,7 +73,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       closeCart();
       setIsOrderOpen(true);
 
-      // Step 2: WAIT ~1 second delay (1000ms pause while covered)
+      // Step 2: WAIT 0.2s delay (200ms) - almost instant transition
       setTimeout(() => {
         // Step 3: Part curtains to reveal order form!
         setCurtainState("open");
@@ -82,11 +82,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           setCurtainVisible(false);
           setIsTransitioning(false);
         }, 1000);
-      }, 1000);
+      }, 200);
     }, 1000);
   };
 
-  // 2. Order Form -> Site transition (Close form -> wait 1s -> reveal site)
+  // 2. Order Form -> Site transition (Close form -> wait 0.2s -> reveal site)
   const startCloseOrderTransition = (onDone?: () => void) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
@@ -105,7 +105,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setIsOrderOpen(false);
       if (onDone) onDone();
 
-      // Step 2: WAIT ~1 second delay (1000ms pause while covered)
+      // Step 2: WAIT 0.2s delay (200ms) - almost instant transition
       setTimeout(() => {
         // Step 3: Part curtains to reveal the site!
         setCurtainState("open");
@@ -114,7 +114,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           setCurtainVisible(false);
           setIsTransitioning(false);
         }, 1000);
-      }, 1000);
+      }, 200);
     }, 1000);
   };
 
