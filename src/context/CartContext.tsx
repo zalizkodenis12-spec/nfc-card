@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { createContext, useContext, useState, useMemo } from "react";
 
@@ -23,6 +23,9 @@ interface CartContextType {
   totalCount: number;
   totalPrice: number;
   totalSavings: number;
+  isOrderOpen: boolean;
+  openOrder: () => void;
+  closeOrder: () => void;
   addItem: (product: Omit<CartItem, "qty">, qty?: number) => void;
   removeItem: (id: string) => void;
   updateQty: (id: string, qty: number) => void;
@@ -37,6 +40,10 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
+
+  const openOrder = () => setIsOrderOpen(true);
+  const closeOrder = () => setIsOrderOpen(false);
 
   const addItem = (product: Omit<CartItem, "qty">, qty: number = 1) => {
     setItems((prev) => {
@@ -92,6 +99,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       value={{
         items,
         isOpen,
+        isOrderOpen,
         totalCount,
         totalPrice,
         totalSavings,
@@ -101,6 +109,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         openCart,
         closeCart,
+        openOrder,
+        closeOrder,
         toggleCart,
       }}
     >

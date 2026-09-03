@@ -1,0 +1,429 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useCart, getUnitPrice } from "@/context/CartContext";
+
+export default function OrderModal() {
+  const { items, totalPrice, isOrderOpen, closeOrder, clearCart } = useCart();
+
+  // Form states
+  const [name, setName] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [comment, setComment] = useState("");
+
+  // Validation & UI states
+  const [touched, setTouched] = useState<{ name?: boolean; telegram?: boolean }>({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // Curtain animation state:
+  // "hidden": curtains retracted (-100vw, +100vw)
+  // "covering": curtains slide in to cover screen (0)
+  // "revealing": curtains slide out (-100vw, +100vw)
+  const [curtainState, setCurtainState] = useState<"hidden" | "closed" | "open">("hidden");
+
+  // Reset form when modal opens
+  useEffect(() => {
+    if (isOrderOpen) {
+      document.body.style.overflow = "hidden";
+      setIsSuccess(false);
+      setErrorMessage("");
+      setTouched({});
+      // Start with curtain closed, then slide open to reveal form
+      setCurtainState("closed");
+      const timer = setTimeout(() => {
+        setCurtainState("open");
+      }, 50);
+      return () => clearTimeout(timer);
+    } else {
+      document.body.style.overflow = "";
+      setCurtainState("hidden");
+    }
+  }, [isOrderOpen]);
+
+  // Handle closing with reverse curtain animation
+  const handleClose = () => {
+    if (isLoading) return;
+    // Slide curtains closed over form
+    setCurtainState("closed");
+    setTimeout(() => {
+      closeOrder();
+      // After form is closed, slide curtains away
+      setTimeout(() => {
+        setCurtainState("hidden");
+      }, 400);
+    }, 700);
+  };
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOrderOpen && !isLoading) {
+        handleClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOrderOpen, isLoading]);
+
+  // Validation rules
+  const isNameValid = name.trim().length >= 2;
+  const cleanTg = telegram.trim();
+  const isTgValid =
+    cleanTg.length >= 3 &&
+    (cleanTg.startsWith("@") || cleanTg.includes("t.me/"));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTouched({ name: true, telegram: true });
+
+    if (!isNameValid || !isTgValid) {
+      return;
+    }
+
+    if (items.length === 0) {
+      setErrorMessage("Ваш кошик порожній");
+      return;
+    }
+
+    setIsLoading(true);
+    setErrorMessage("");
+
+    try {
+      const orderPayload = {
+        name: name.trim(),
+        telegram: cleanTg,
+        comment: comment.trim(),
+        cartItems: items.map((item) => ({
+          name: item.name,
+          qty: item.qty,
+          price: getUnitPrice(item.qty),
+        })),
+        totalPrice,
+      };
+
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Не вдалося відправити замовлення");
+      }
+
+      // Success
+      setIsSuccess(true);
+      clearCart();
+
+      // Automatically close after 2.6 seconds with reverse curtain animation
+      setTimeout(() => {
+        handleClose();
+      }, 2600);
+    } catch (err: any) {
+      console.error("Order submission error:", err);
+      setErrorMessage(err.message || "Помилка при оформленні. Спробуйте ще раз.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {/* ── 1. TRANSITION CURTAIN (Wave Split from PageIntro) ── */}
+      <AnimatePresence>
+        {curtainState !== "hidden" && (
+          <div className="fixed inset-0 z-[150] overflow-hidden pointer-events-none flex">
+            {/* LEFT curtain half */}
+            <motion.div
+              initial={{ x: 0 }}
+              animate={curtainState === "open" ? { x: "-100vw" } : { x: 0 }}
+              transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+              className="relative h-full bg-brand-primary pointer-events-auto"
+              style={{ width: "50%" }}
+            >
+              {/* Vertical smooth wave on right side of left curtain */}
+              <div className="absolute top-0 right-[-50px] h-full w-[100px]">
+                <svg viewBox="0 0 100 1000" preserveAspectRatio="none" className="w-full h-full">
+                  <path
+                    d="M50,0 C0,333 100,666 50,1000 L0,1000 L0,0 Z"
+                    className="fill-brand-primary"
+                  />
+                </svg>
+              </div>
+            </motion.div>
+
+            {/* RIGHT curtain half */}
+            <motion.div
+              initial={{ x: 0 }}
+              animate={curtainState === "open" ? { x: "100vw" } : { x: 0 }}
+              transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+              className="relative h-full bg-brand-primary pointer-events-auto"
+              style={{ width: "50%" }}
+            >
+              {/* Vertical smooth wave on left side of right curtain */}
+              <div className="absolute top-0 left-[-50px] h-full w-[100px]">
+                <svg viewBox="0 0 100 1000" preserveAspectRatio="none" className="w-full h-full">
+                  <path
+                    d="M50,0 C0,333 100,666 50,1000 L100,1000 L100,0 Z"
+                    className="fill-brand-primary"
+                  />
+                </svg>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ── 2. ORDER MODAL / OVERLAY ── */}
+      <AnimatePresence>
+        {isOrderOpen && (
+          <div className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/40 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.3 }}
+              className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-brand-primary/15 my-auto max-h-[92vh] flex flex-col"
+            >
+              {/* ── Header ── */}
+              <div className="bg-brand-primary text-white px-6 py-5 flex items-center justify-between shrink-0 shadow-md">
+                <h2 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
+                  Оформлення замовлення
+                </h2>
+
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  disabled={isLoading}
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 flex items-center justify-center text-white transition-all cursor-pointer"
+                  aria-label="Закрити форму"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* ── Body ── */}
+              <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-5">
+                {isSuccess ? (
+                  /* ── Success Screen ── */
+                  <div className="py-12 px-4 flex flex-col items-center justify-center text-center space-y-4">
+                    <div className="w-20 h-20 rounded-full bg-green-50 text-green-600 flex items-center justify-center shadow-inner">
+                      <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-serif font-black text-brand-primary">
+                      Заявку прийнято!
+                    </h3>
+                    <p className="text-gray-600 font-medium text-base sm:text-lg max-w-sm">
+                      Дякуємо! Ми зв&apos;яжемось з вами в Telegram найближчим часом для уточнення деталей.
+                    </p>
+                    <div className="pt-2">
+                      <span className="inline-block text-xs font-bold text-brand-primary/60 bg-brand-light px-4 py-2 rounded-full">
+                        Повертаємо вас на сайт...
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  /* ── Checkout Form ── */
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Mini Cart Summary */}
+                    {items.length > 0 && (
+                      <div className="bg-brand-light border border-brand-primary/20 rounded-2xl p-4 shadow-xs">
+                        <div className="flex items-center justify-between font-black text-xs sm:text-sm text-brand-primary uppercase tracking-wider mb-2.5">
+                          <span>Ваше замовлення:</span>
+                          <span className="text-gray-500 lowercase font-normal">{items.length} поз.</span>
+                        </div>
+
+                        <div className="divide-y divide-brand-primary/10 max-h-36 overflow-y-auto pr-1">
+                          {items.map((item) => {
+                            const unitPrice = getUnitPrice(item.qty);
+                            const itemTotal = unitPrice * item.qty;
+                            return (
+                              <div key={item.id} className="py-2 flex items-center justify-between text-xs sm:text-sm">
+                                <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                                  <img
+                                    src={item.image}
+                                    alt={item.name}
+                                    className="w-9 h-9 rounded-lg object-cover bg-white shrink-0 border border-brand-primary/15"
+                                  />
+                                  <div className="truncate">
+                                    <p className="font-bold text-brand-primary truncate">{item.name}</p>
+                                    <p className="text-gray-500 text-[11px]">
+                                      {item.qty} шт. × {unitPrice} грн
+                                    </p>
+                                  </div>
+                                </div>
+                                <span className="font-black text-brand-primary shrink-0">
+                                  {itemTotal.toLocaleString()} грн
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        <div className="border-t border-brand-primary/20 pt-2.5 mt-2 flex items-baseline justify-between">
+                          <span className="text-sm font-bold text-gray-700">Разом до сплати:</span>
+                          <span className="text-xl font-serif font-black text-brand-primary">
+                            {totalPrice.toLocaleString()} грн
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Field 1: Name */}
+                    <div>
+                      <label htmlFor="order-name" className="block text-xs sm:text-sm font-bold text-brand-primary mb-1.5">
+                        Ім&apos;я <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="order-name"
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
+                        placeholder="Як до вас звертатися?"
+                        className={`w-full min-h-[48px] px-4 py-3 rounded-xl border ${
+                          touched.name && !isNameValid
+                            ? "border-red-500 focus:ring-red-200"
+                            : "border-gray-300 focus:border-brand-primary focus:ring-brand-primary/20"
+                        } focus:ring-2 outline-none text-base font-medium transition-all text-gray-900 bg-gray-50/50 focus:bg-white`}
+                      />
+                      {touched.name && !isNameValid && (
+                        <p className="text-xs text-red-500 font-semibold mt-1">
+                          Будь ласка, введіть ваше ім&apos;я (мінімум 2 символи)
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Field 2: Telegram */}
+                    <div>
+                      <label htmlFor="order-telegram" className="block text-xs sm:text-sm font-bold text-brand-primary mb-1.5">
+                        Telegram <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="order-telegram"
+                        type="text"
+                        required
+                        value={telegram}
+                        onChange={(e) => setTelegram(e.target.value)}
+                        onBlur={() => setTouched((prev) => ({ ...prev, telegram: true }))}
+                        placeholder="@username або посилання t.me/..."
+                        className={`w-full min-h-[48px] px-4 py-3 rounded-xl border ${
+                          touched.telegram && !isTgValid
+                            ? "border-red-500 focus:ring-red-200"
+                            : "border-gray-300 focus:border-brand-primary focus:ring-brand-primary/20"
+                        } focus:ring-2 outline-none text-base font-medium transition-all text-gray-900 bg-gray-50/50 focus:bg-white`}
+                      />
+                      {touched.telegram && !isTgValid && (
+                        <p className="text-xs text-red-500 font-semibold mt-1">
+                          Telegram має починатися з @ або бути посиланням t.me/...
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Field 3: Comment */}
+                    <div>
+                      <label htmlFor="order-comment" className="block text-xs sm:text-sm font-bold text-gray-700 mb-1.5">
+                        Побажання / коментар <span className="text-gray-400 font-normal">(необов&apos;язково)</span>
+                      </label>
+                      <textarea
+                        id="order-comment"
+                        rows={3}
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        placeholder="Напишіть побажання щодо дизайну, якщо хочете кастомну картку, або залиште порожнім"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none text-sm font-medium transition-all text-gray-900 bg-gray-50/50 focus:bg-white resize-none"
+                      />
+                    </div>
+
+                    {/* Error Notice */}
+                    {errorMessage && (
+                      <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-semibold flex items-center gap-2">
+                        <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path
+                            fillRule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>{errorMessage}</span>
+                      </div>
+                    )}
+
+                    {/* Submit Button */}
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full min-h-[52px] bg-brand-accent hover:brightness-105 active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed text-white py-4 px-6 rounded-full font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all cursor-pointer flex items-center justify-center gap-2"
+                      >
+                        {isLoading ? (
+                          <>
+                            <svg
+                              className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v8H4z"
+                              ></path>
+                            </svg>
+                            <span>Відправляємо заявку...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Відправити заявку</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="w-5 h-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

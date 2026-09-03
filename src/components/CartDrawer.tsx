@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -57,6 +57,7 @@ export default function CartDrawer() {
     items,
     isOpen,
     closeCart,
+    openOrder,
     updateQty,
     removeItem,
     totalPrice,
@@ -88,19 +89,8 @@ export default function CartDrawer() {
 
   const handleCheckout = () => {
     if (items.length === 0) return;
-
-    let orderText = "👋 Вітаю! Хочу оформити замовлення DWS Cards:%0A%0A";
-    items.forEach((item, index) => {
-      const unitPrice = getUnitPrice(item.qty);
-      orderText += `${index + 1}. ${item.name} — ${item.qty} шт. x ${unitPrice} грн = ${item.qty * unitPrice} грн%0A`;
-    });
-    orderText += `%0A💰 Загальна сума: ${totalPrice} грн`;
-    if (totalSavings > 0) {
-      orderText += ` (Економія на опті: ${totalSavings} грн)`;
-    }
-
-    const telegramUrl = `https://t.me/absolutikdenchik?text=${orderText}`;
-    window.open(telegramUrl, "_blank", "noopener,noreferrer");
+    closeCart();
+    openOrder();
   };
 
   return (

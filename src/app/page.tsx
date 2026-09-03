@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import PageIntro from "@/components/PageIntro";
 import HeroSection from "@/components/HeroSection";
 import CartDrawer from "@/components/CartDrawer";
+import OrderModal from "@/components/OrderModal";
 import { useCart } from "@/context/CartContext";
 
 export default function Home() {
@@ -129,6 +130,9 @@ export default function Home() {
 
       {/* Cart Drawer Panel */}
       <CartDrawer />
+
+      {/* Order Checkout Modal */}
+      <OrderModal />
     </main>
   );
 }
