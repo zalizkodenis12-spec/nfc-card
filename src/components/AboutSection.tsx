@@ -10,10 +10,11 @@ import { useCardTheme } from "@/context/ThemeContext";
 export default function AboutSection() {
   const { currentTheme } = useCardTheme();
 
-  const marqueeText =
+  const baseMarquee =
     currentTheme.id === "instagram"
-      ? "DWS CARDS • INSTAGRAM • ПІДПИСНИКИ • DWS CARDS • INSTAGRAM • "
-      : "DWS CARDS • ВІДГУКИ • 5 ЗІРОК • DWS CARDS • ВІДГУКИ • 5 ЗІРОК • ";
+      ? "DWS CARDS • INSTAGRAM • ПІДПИСНИКИ • "
+      : "DWS CARDS • ВІДГУКИ • 5 ЗІРОК • ";
+  const marqueeText = baseMarquee.repeat(6);
 
   return (
     <section id="about" className="relative w-full bg-brand-primary z-20 pt-16 md:pt-24 pb-16 md:pb-32">
@@ -33,21 +34,21 @@ export default function AboutSection() {
       </div>
 
       {/* Infinite scrolling marquee text in the background (wrapped in overflow-hidden) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none text-white/10">
-        <div className="absolute top-1/4 left-0 w-full flex whitespace-nowrap opacity-10 -rotate-2 scale-110">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none text-white/22">
+        <div className="absolute top-[15%] left-0 w-full flex whitespace-nowrap -rotate-2 scale-110">
           <motion.div 
-            animate={{ x: [0, -1000] }} 
-            transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-            className="text-[16vw] md:text-[12vw] font-black uppercase tracking-tighter"
+            animate={{ x: [0, -1800] }} 
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+            className="text-[26vw] sm:text-[20vw] md:text-[12vw] font-black uppercase tracking-tighter"
           >
             {marqueeText}
           </motion.div>
         </div>
-        <div className="absolute bottom-1/4 left-0 w-full flex whitespace-nowrap opacity-10 rotate-2 scale-110">
+        <div className="absolute bottom-[15%] left-0 w-full flex whitespace-nowrap rotate-2 scale-110">
           <motion.div 
-            animate={{ x: [-1000, 0] }} 
-            transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-            className="text-[16vw] md:text-[12vw] font-black uppercase tracking-tighter"
+            animate={{ x: [-1800, 0] }} 
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+            className="text-[26vw] sm:text-[20vw] md:text-[12vw] font-black uppercase tracking-tighter"
           >
             {marqueeText}
           </motion.div>
