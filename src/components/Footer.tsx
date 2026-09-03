@@ -71,14 +71,6 @@ export default function Footer() {
                 </div>
                 <span className="font-black text-[11px] sm:text-xs md:text-xl text-white group-hover:text-brand-link-hover transition-colors">@denis__zalizko</span>
               </a>
-
-              {/* Telegram */}
-              <a href="https://t.me/absolutikdenchik" target="_blank" rel="noreferrer" className="group flex items-center gap-2 md:gap-4 hover:-translate-y-1 transition-transform text-left">
-                <div className="w-8 h-8 md:w-14 md:h-14 bg-white text-brand-accent rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow shrink-0">
-                  <svg className="w-4 h-4 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.196 1.006.128.832.942z"/></svg>
-                </div>
-                <span className="font-black text-[11px] sm:text-xs md:text-xl text-white group-hover:text-brand-link-hover transition-colors">@absolutikdenchik</span>
-              </a>
             </div>
           </div>
         </div>
