@@ -88,11 +88,6 @@ export default function HeroSection() {
         >
           КУПИТИ ЗАРАЗ
         </button>
-        <div style={{ textAlign: "center", marginTop: "20px", fontSize: "16px", color: "#333" }}>
-          * залишилось{" "}
-          <span style={{ display: "inline-block", background: "#0B2C6B", color: "#fff", padding: "3px 12px", borderRadius: "6px", fontWeight: "bold", fontSize: "20px", margin: "0 3px" }}>9</span>
-          {" "}штук по акції
-        </div>
       </div>
 
       {/* Буліти */}
