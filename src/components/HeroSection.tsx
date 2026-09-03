@@ -55,7 +55,7 @@ export default function HeroSection() {
 
       {/* Блок цін */}
       <div style={{ display: "flex", position: "relative", background: "#fff", marginTop: "15px" }}>
-        <div style={{ width: "60%", padding: "20px 35px 20px 10px", textAlign: "center", background: "#fff" }}>
+        <div style={{ width: "60%", padding: "20px 55px 20px 5px", textAlign: "center", background: "#fff" }}>
           <span style={{ display: "block", fontSize: "18px", marginBottom: "5px", color: "#0B2C6B", fontWeight: 600 }}>Стара ціна:</span>
           <span style={{ display: "block", fontSize: "34px", fontWeight: 900, textDecoration: "line-through", color: "#0B2C6B" }}>799 грн</span>
         </div>
