@@ -57,7 +57,7 @@ export default function CartDrawer() {
     items,
     isOpen,
     closeCart,
-    openOrder,
+    startCheckoutTransition,
     updateQty,
     removeItem,
     totalPrice,
@@ -89,8 +89,7 @@ export default function CartDrawer() {
 
   const handleCheckout = () => {
     if (items.length === 0) return;
-    closeCart();
-    openOrder();
+    startCheckoutTransition();
   };
 
   return (

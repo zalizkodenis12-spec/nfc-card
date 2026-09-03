@@ -12,23 +12,22 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, telegram, comment, cartItems, totalPrice } = body;
 
-    // Backend validation
+    console.log("=== [/api/order] Новий запит на оформлення ===");
+    console.log("Дані форми:", { name, telegram, totalPrice, itemsCount: cartItems?.length });
+
+    // 1. Validation for Name (min 2 chars)
     if (!name || typeof name !== "string" || name.trim().length < 2) {
       return NextResponse.json(
-        { error: "Будь ласка, введіть коректне ім'я" },
+        { error: "Введіть щонайменше 2 символи в полі Ім'я" },
         { status: 400 }
       );
     }
 
+    // 2. Validation for Telegram (strictly starts with @ and has at least 1 char after)
     const cleanTg = typeof telegram === "string" ? telegram.trim() : "";
-    const isTgValid =
-      cleanTg.startsWith("@") ||
-      cleanTg.includes("t.me/") ||
-      /^https?:\/\/t\.me\//.test(cleanTg);
-
-    if (!cleanTg || !isTgValid || cleanTg.length < 3) {
+    if (!cleanTg.startsWith("@") || cleanTg.length < 2) {
       return NextResponse.json(
-        { error: "Введіть коректний нікнейм або посилання на Telegram" },
+        { error: "Вкажіть Telegram у форматі @username" },
         { status: 400 }
       );
     }
@@ -40,8 +39,21 @@ export async function POST(request: Request) {
       );
     }
 
-    const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN?.trim();
+    const chatId = process.env.TELEGRAM_CHAT_ID?.trim();
+
+    console.log("Перевірка ENV змінних:");
+    console.log("— TELEGRAM_BOT_TOKEN defined:", !!botToken, "Length:", botToken?.length);
+    console.log("— TELEGRAM_CHAT_ID defined:", !!chatId, "Value:", chatId);
+
+    if (!botToken || !chatId) {
+      const missing: string[] = [];
+      if (!botToken) missing.push("TELEGRAM_BOT_TOKEN");
+      if (!chatId) missing.push("TELEGRAM_CHAT_ID");
+      const errText = `Помилка конфігурації: відсутні змінні оточення (${missing.join(", ")}) на сервері Vercel`;
+      console.error(errText);
+      return NextResponse.json({ error: errText }, { status: 500 });
+    }
 
     // Format Kyiv date/time: DD.MM.YY, HH:MM:SS
     const now = new Date();
@@ -71,46 +83,47 @@ export async function POST(request: Request) {
       comment?.trim() ? escapeHtml(comment.trim()) : "не вказано"
     }\n\n🕐 <b>Дата та час:</b> ${formattedDate}`;
 
-    if (!botToken || !chatId) {
-      console.warn(
-        "TELEGRAM_BOT_TOKEN або TELEGRAM_CHAT_ID не налаштовано в .env. Замовлення збережено в логах:",
-        { name, telegram: cleanTg, totalPrice, cartItems }
+    console.log(`Відправка запиту до Telegram Bot API...`);
+
+    try {
+      const tgRes = await fetch(
+        `https://api.telegram.org/bot${botToken}/sendMessage`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: messageText,
+            parse_mode: "HTML",
+          }),
+        }
       );
-      // Return success in case variables are not yet configured on host so user isn't blocked
-      return NextResponse.json({
-        success: true,
-        warning: "Telegram credentials missing in environment variables",
-      });
-    }
 
-    const tgRes = await fetch(
-      `https://api.telegram.org/bot${botToken}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: messageText,
-          parse_mode: "HTML",
-        }),
+      const tgData = await tgRes.json();
+      console.log("Telegram API статус:", tgRes.status, "Відповідь:", JSON.stringify(tgData));
+
+      if (!tgRes.ok || !tgData.ok) {
+        const tgErrorDesc = tgData?.description || tgRes.statusText || "Невідома помилка Telegram API";
+        console.error("Помилка від Telegram API:", tgErrorDesc);
+        return NextResponse.json(
+          { error: `Помилка Telegram API: ${tgErrorDesc}` },
+          { status: 502 }
+        );
       }
-    );
 
-    const tgData = await tgRes.json();
-
-    if (!tgRes.ok || !tgData.ok) {
-      console.error("Telegram API Error:", tgData);
+      console.log("Успішно відправлено в Telegram!");
+      return NextResponse.json({ success: true });
+    } catch (fetchErr: any) {
+      console.error("Мережева помилка при зверненні до Telegram API:", fetchErr);
       return NextResponse.json(
-        { error: "Помилка зв'язку з сервером Telegram" },
+        { error: `Мережева помилка Telegram API: ${fetchErr.message}` },
         { status: 502 }
       );
     }
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Order API Error:", error);
+  } catch (error: any) {
+    console.error("Order API Unhandled Error:", error);
     return NextResponse.json(
-      { error: "Внутрішня помилка сервера при оформленні замовлення" },
+      { error: `Внутрішня помилка сервера: ${error?.message || "невідома помилка"}` },
       { status: 500 }
     );
   }

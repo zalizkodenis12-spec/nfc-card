@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useMemo } from "react";
+import WaveCurtains from "@/components/WaveCurtains";
 
 export interface CartItem {
   id: string;
@@ -26,6 +27,9 @@ interface CartContextType {
   isOrderOpen: boolean;
   openOrder: () => void;
   closeOrder: () => void;
+  startCheckoutTransition: () => void;
+  startCloseOrderTransition: (onDone?: () => void) => void;
+  isTransitioning: boolean;
   addItem: (product: Omit<CartItem, "qty">, qty?: number) => void;
   removeItem: (id: string) => void;
   updateQty: (id: string, qty: number) => void;
@@ -42,8 +46,77 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOrderOpen, setIsOrderOpen] = useState<boolean>(false);
 
+  // Transition curtains state
+  const [curtainVisible, setCurtainVisible] = useState<boolean>(false);
+  const [curtainState, setCurtainState] = useState<"open" | "closed">("open");
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+
   const openOrder = () => setIsOrderOpen(true);
   const closeOrder = () => setIsOrderOpen(false);
+
+  // 1. Site -> Order Form transition (Close site -> wait 1s -> reveal form)
+  const startCheckoutTransition = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+
+    // Mount curtain in "open" position and immediately close it over the site
+    setCurtainVisible(true);
+    setCurtainState("open");
+
+    requestAnimationFrame(() => {
+      setCurtainState("closed");
+    });
+
+    // Curtains close in 1.0s (1000ms).
+    setTimeout(() => {
+      // Step 1: Close cart and mount order form behind the closed curtain
+      closeCart();
+      setIsOrderOpen(true);
+
+      // Step 2: WAIT ~1 second delay (1000ms pause while covered)
+      setTimeout(() => {
+        // Step 3: Part curtains to reveal order form!
+        setCurtainState("open");
+
+        setTimeout(() => {
+          setCurtainVisible(false);
+          setIsTransitioning(false);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  };
+
+  // 2. Order Form -> Site transition (Close form -> wait 1s -> reveal site)
+  const startCloseOrderTransition = (onDone?: () => void) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+
+    // Mount curtain and close it over the order form
+    setCurtainVisible(true);
+    setCurtainState("open");
+
+    requestAnimationFrame(() => {
+      setCurtainState("closed");
+    });
+
+    // Curtains close in 1.0s (1000ms).
+    setTimeout(() => {
+      // Step 1: Close order form behind the closed curtain
+      setIsOrderOpen(false);
+      if (onDone) onDone();
+
+      // Step 2: WAIT ~1 second delay (1000ms pause while covered)
+      setTimeout(() => {
+        // Step 3: Part curtains to reveal the site!
+        setCurtainState("open");
+
+        setTimeout(() => {
+          setCurtainVisible(false);
+          setIsTransitioning(false);
+        }, 1000);
+      }, 1000);
+    }, 1000);
+  };
 
   const addItem = (product: Omit<CartItem, "qty">, qty: number = 1) => {
     setItems((prev) => {
@@ -103,6 +176,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         totalCount,
         totalPrice,
         totalSavings,
+        startCheckoutTransition,
+        startCloseOrderTransition,
+        isTransitioning,
         addItem,
         removeItem,
         updateQty,
@@ -115,6 +191,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
+      {curtainVisible && (
+        <WaveCurtains state={curtainState} duration={1.0} zIndex={300} />
+      )}
     </CartContext.Provider>
   );
 }
