@@ -34,8 +34,8 @@ export default function AboutSection() {
       </div>
 
       {/* Infinite scrolling marquee text in the background (wrapped in overflow-hidden) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none text-white/22">
-        <div className="absolute top-[15%] left-0 w-full flex whitespace-nowrap -rotate-2 scale-110">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none text-white/10">
+        <div className="absolute top-[15%] left-0 w-full flex whitespace-nowrap opacity-10 -rotate-2 scale-110">
           <motion.div 
             animate={{ x: [0, -1800] }} 
             transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
@@ -44,7 +44,7 @@ export default function AboutSection() {
             {marqueeText}
           </motion.div>
         </div>
-        <div className="absolute bottom-[15%] left-0 w-full flex whitespace-nowrap rotate-2 scale-110">
+        <div className="absolute bottom-[15%] left-0 w-full flex whitespace-nowrap opacity-10 rotate-2 scale-110">
           <motion.div 
             animate={{ x: [-1800, 0] }} 
             transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
