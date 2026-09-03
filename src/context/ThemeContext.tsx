@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 
@@ -66,13 +66,13 @@ export const CARD_THEMES: CardTheme[] = [
     productId: "nfc-card-instagram",
     productName: "NFC-картка Instagram",
     colors: {
-      primary: "#C84812", // Насичений теплий оранжевий з низу карти Instagram
-      primaryDark: "#993306",
-      accent: "#E65A18",
-      accentHover: "#C84812",
-      linkHover: "#FDBA74",
-      light: "#FFF7ED",
-      lightBorder: "rgba(200, 72, 18, 0.25)",
+      primary: "#D9531E", // Чуть-чуть світліший, свіжий соковитий оранжевий
+      primaryDark: "#B84010",
+      accent: "#F06424",
+      accentHover: "#D9531E",
+      linkHover: "#FED7AA",
+      light: "#FFF8F2",
+      lightBorder: "rgba(217, 83, 30, 0.25)",
     },
   },
 ];
