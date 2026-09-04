@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 export interface CardTheme {
-  id: "google" | "instagram";
+  id: "google" | "instagram" | "dws";
   name: string;
   cardImage: string;
   headlinePrefix: string;
@@ -75,6 +75,31 @@ export const CARD_THEMES: CardTheme[] = [
       lightBorder: "rgba(217, 83, 30, 0.25)",
     },
   },
+  {
+    id: "dws",
+    name: "DWS Cards",
+    cardImage: "/dws-card.jpg",
+    headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
+    subheadlinePrefix: "З ВЛАСНИМ",
+    subheadlineHighlight: "ДИЗАЙНОМ ТА САЙТОМ",
+    highlightColor: "#38BDF8",
+    bullets: [
+      "Один дотик — і клієнт на вашому сайті чи портфоліо",
+      "Індивідуальний брендинг під стиль вашої компанії",
+      "Підходить для будь-якого закладу та смартфона",
+    ],
+    productId: "nfc-card-dws",
+    productName: "NFC-картка з власним дизайном (DWS)",
+    colors: {
+      primary: "#1E293B", // Преміальний темний графіт / Slate
+      primaryDark: "#0F172A",
+      accent: "#0284C7", // Фірмовий кобальтовий синій колір DenisWebStudio
+      accentHover: "#0369A1",
+      linkHover: "#7DD3FC",
+      light: "#F0F9FF",
+      lightBorder: "rgba(30, 41, 59, 0.25)",
+    },
+  },
 ];
 
 interface CardThemeContextType {
@@ -82,7 +107,7 @@ interface CardThemeContextType {
   currentTheme: CardTheme;
   nextTheme: () => void;
   prevTheme: () => void;
-  setThemeById: (id: "google" | "instagram") => void;
+  setThemeById: (id: "google" | "instagram" | "dws") => void;
 }
 
 const CardThemeContext = createContext<CardThemeContextType | undefined>(undefined);
@@ -100,7 +125,7 @@ export function CardThemeProvider({ children }: { children: React.ReactNode }) {
     setActiveThemeIndex((prev) => (prev - 1 + CARD_THEMES.length) % CARD_THEMES.length);
   };
 
-  const setThemeById = (id: "google" | "instagram") => {
+  const setThemeById = (id: "google" | "instagram" | "dws") => {
     const idx = CARD_THEMES.findIndex((t) => t.id === id);
     if (idx !== -1) setActiveThemeIndex(idx);
   };

@@ -18,6 +18,8 @@ export default function HistorySection() {
             backgroundImage: `url(${
               currentTheme.id === "instagram"
                 ? "/how-to-order-instagram.jpeg"
+                : currentTheme.id === "dws"
+                ? "/how-to-order-dws.jpeg"
                 : "/how-to-order-google.jpeg"
             })`,
           }}

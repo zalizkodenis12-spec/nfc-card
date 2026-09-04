@@ -30,7 +30,12 @@ import { useCardTheme } from "@/context/ThemeContext";
 
 export default function ReviewsSection() {
   const { currentTheme } = useCardTheme();
-  const bgImage = currentTheme.id === "instagram" ? "/reviews-bg-instagram.jpg" : "/reviews-bg-google.jpg";
+  const bgImage =
+    currentTheme.id === "instagram"
+      ? "/reviews-bg-instagram.jpg"
+      : currentTheme.id === "dws"
+      ? "/reviews-bg-dws.jpg"
+      : "/reviews-bg-google.jpg";
 
   return (
     <section id="reviews" className="relative w-full bg-brand-bg z-10 py-16 md:py-32 overflow-hidden min-h-[90vh] flex flex-col justify-center">

@@ -13,6 +13,8 @@ export default function AboutSection() {
   const baseMarquee =
     currentTheme.id === "instagram"
       ? "DWS CARDS • INSTAGRAM • ПІДПИСНИКИ • "
+      : currentTheme.id === "dws"
+      ? "DWS CARDS • ВЛАСНИЙ БРЕНД • САЙТ • "
       : "DWS CARDS • ВІДГУКИ • 5 ЗІРОК • ";
   const marqueeText = baseMarquee.repeat(6);
 

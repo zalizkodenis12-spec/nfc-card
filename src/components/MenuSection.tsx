@@ -14,6 +14,8 @@ export default function MenuSection() {
       name:
         currentTheme.id === "instagram"
           ? "Налаштування під ваш Instagram-акаунт"
+          : currentTheme.id === "dws"
+          ? "Налаштування під ваш сайт або бізнес"
           : "Налаштування під ваш Google-профіль",
     },
     { id: 4, name: "Дизайн картки під бренд закладу" },
@@ -80,6 +82,8 @@ export default function MenuSection() {
                   src={
                     currentTheme.id === "instagram"
                       ? `/kit-instagram-${idx + 1}.jpeg`
+                      : currentTheme.id === "dws"
+                      ? `/kit-dws-${idx + 1}.jpeg`
                       : `/kit-google-${idx + 1}.jpeg`
                   }
                   alt={item.name}
