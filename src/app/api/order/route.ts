@@ -9,11 +9,42 @@ function escapeHtml(str: string): string {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { name, telegram, comment, cartItems, totalPrice } = body;
+    let name = "";
+    let telegram = "";
+    let comment = "";
+    let cartItems: any[] = [];
+    let totalPrice = 0;
+    let photos: File[] = [];
+
+    const contentType = request.headers.get("content-type") || "";
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await request.formData();
+      name = (formData.get("name") as string) || "";
+      telegram = (formData.get("telegram") as string) || "";
+      comment = (formData.get("comment") as string) || "";
+      totalPrice = Number(formData.get("totalPrice")) || 0;
+      const rawCart = formData.get("cartItems") as string;
+      if (rawCart) {
+        try {
+          cartItems = JSON.parse(rawCart);
+        } catch {
+          cartItems = [];
+        }
+      }
+      photos = (formData.getAll("photos") as File[]).filter(
+        (f) => f && typeof f === "object" && "size" in f && f.size > 0
+      );
+    } else {
+      const body = await request.json();
+      name = body.name || "";
+      telegram = body.telegram || "";
+      comment = body.comment || "";
+      cartItems = body.cartItems || [];
+      totalPrice = body.totalPrice || 0;
+    }
 
     console.log("=== [/api/order] Новий запит на оформлення ===");
-    console.log("Дані форми:", { name, telegram, totalPrice, itemsCount: cartItems?.length });
+    console.log("Дані форми:", { name, telegram, totalPrice, itemsCount: cartItems?.length, photosCount: photos.length });
 
     // 1. Validation for Name (min 2 chars)
     if (!name || typeof name !== "string" || name.trim().length < 2) {
@@ -83,21 +114,72 @@ export async function POST(request: Request) {
       comment?.trim() ? escapeHtml(comment.trim()) : "не вказано"
     }\n\n🕐 <b>Дата та час:</b> ${formattedDate}`;
 
-    console.log(`Відправка запиту до Telegram Bot API...`);
+    console.log(`Відправка до Telegram Bot API (фото: ${photos.length})...`);
+
+    // Ensure caption does not exceed Telegram 1024 char limit
+    let mediaCaption = messageText;
+    if (mediaCaption.length > 1020) {
+      const safeComment = comment?.trim().slice(0, 150) + "...";
+      mediaCaption = `🚀 <b>НОВА ЗАЯВКА З САЙТУ DWS Cards!</b>\n\n👤 <b>Клієнт:</b> ${escapeHtml(
+        name.trim()
+      )}\n💬 <b>Telegram:</b> ${escapeHtml(
+        cleanTg
+      )}\n🛒 <b>Замовлення:</b>\n${itemsText}\n💰 <b>Разом:</b> ${totalPrice} грн\n📝 <b>Побажання:</b> ${escapeHtml(
+        safeComment
+      )}\n\n🕐 <b>Дата та час:</b> ${formattedDate}`;
+    }
 
     try {
-      const tgRes = await fetch(
-        `https://api.telegram.org/bot${botToken}/sendMessage`,
-        {
+      let tgRes: Response;
+
+      if (photos.length === 1) {
+        // Single photo with order caption attached
+        const tgFormData = new FormData();
+        tgFormData.append("chat_id", chatId);
+        tgFormData.append("photo", photos[0], photos[0].name || "design.jpg");
+        tgFormData.append("caption", mediaCaption);
+        tgFormData.append("parse_mode", "HTML");
+
+        tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: messageText,
-            parse_mode: "HTML",
-          }),
-        }
-      );
+          body: tgFormData,
+        });
+      } else if (photos.length > 1) {
+        // Media group (album of 2-5 photos) with order caption on the first photo
+        const tgFormData = new FormData();
+        tgFormData.append("chat_id", chatId);
+
+        const media = photos.slice(0, 5).map((file, idx) => {
+          const attachKey = `photo_${idx}`;
+          tgFormData.append(attachKey, file, file.name || `photo_${idx}.jpg`);
+          return {
+            type: "photo",
+            media: `attach://${attachKey}`,
+            ...(idx === 0 ? { caption: mediaCaption, parse_mode: "HTML" } : {}),
+          };
+        });
+
+        tgFormData.append("media", JSON.stringify(media));
+
+        tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMediaGroup`, {
+          method: "POST",
+          body: tgFormData,
+        });
+      } else {
+        // Text-only message
+        tgRes = await fetch(
+          `https://api.telegram.org/bot${botToken}/sendMessage`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: messageText,
+              parse_mode: "HTML",
+            }),
+          }
+        );
+      }
 
       const tgData = await tgRes.json();
       console.log("Telegram API статус:", tgRes.status, "Відповідь:", JSON.stringify(tgData));

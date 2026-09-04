@@ -77,19 +77,19 @@ export const CARD_THEMES: CardTheme[] = [
   },
   {
     id: "dws",
-    name: "DWS Cards",
+    name: "Власний дизайн",
     cardImage: "/dws-card.jpg",
     headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
-    subheadlinePrefix: "З ВЛАСНИМ",
-    subheadlineHighlight: "ДИЗАЙНОМ ТА САЙТОМ",
+    subheadlinePrefix: "З ВАШИМ",
+    subheadlineHighlight: "ВЛАСНИМ ДИЗАЙНОМ",
     highlightColor: "#38BDF8",
     bullets: [
-      "Один дотик — і клієнт на вашому сайті чи портфоліо",
-      "Індивідуальний брендинг під стиль вашої компанії",
-      "Підходить для будь-якого закладу та смартфона",
+      "Картка з вашим логотипом, кольорами та стилем",
+      "Програмуємо під TikTok, сайт, меню, Telegram чи будь-яке посилання",
+      "Без камери та QR — спрацьовує в один дотик на будь-якому смартфоні",
     ],
     productId: "nfc-card-dws",
-    productName: "NFC-картка з власним дизайном (DWS)",
+    productName: "NFC-картка з власним дизайном",
     colors: {
       primary: "#1E293B", // Преміальний темний графіт / Slate
       primaryDark: "#0F172A",

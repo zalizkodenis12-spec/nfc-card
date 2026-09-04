@@ -15,10 +15,16 @@ export default function MenuSection() {
         currentTheme.id === "instagram"
           ? "Налаштування під ваш Instagram-акаунт"
           : currentTheme.id === "dws"
-          ? "Налаштування під ваш сайт або бізнес"
+          ? "Налаштування під будь-яке ваше посилання"
           : "Налаштування під ваш Google-профіль",
     },
-    { id: 4, name: "Дизайн картки під бренд закладу" },
+    {
+      id: 4,
+      name:
+        currentTheme.id === "dws"
+          ? "Індивідуальний дизайн під ваш логотип та стиль"
+          : "Дизайн картки під бренд закладу",
+    },
   ];
   return (
     <section id="menu" className="relative w-full bg-brand-primary z-20 pb-32">

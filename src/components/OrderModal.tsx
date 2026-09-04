@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useCart, getUnitPrice } from "@/context/CartContext";
+import { useCardTheme } from "@/context/ThemeContext";
 
 export default function OrderModal() {
   const {
@@ -12,17 +13,23 @@ export default function OrderModal() {
     clearCart,
     isTransitioning,
   } = useCart();
+  const { currentTheme } = useCardTheme();
 
   // Form inputs
   const [name, setName] = useState("");
   const [telegram, setTelegram] = useState("");
   const [comment, setComment] = useState("");
+  const [photos, setPhotos] = useState<File[]>([]);
 
   // Validation & UI states
   const [touched, setTouched] = useState<{ name?: boolean; telegram?: boolean }>({});
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // Check if current theme or any item in cart is custom
+  const isCustomTheme =
+    currentTheme.id === "dws" || items.some((it) => it.id === "nfc-card-dws");
 
   // Reset states when opened
   useEffect(() => {
@@ -31,10 +38,25 @@ export default function OrderModal() {
       setIsSuccess(false);
       setErrorMessage("");
       setTouched({});
+      setPhotos([]);
     } else {
       document.body.style.overflow = "";
     }
   }, [isOrderOpen]);
+
+  // Handle photos selection (max 5)
+  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const selectedFiles = Array.from(e.target.files).filter((file) =>
+      file.type.startsWith("image/")
+    );
+    setPhotos((prev) => [...prev, ...selectedFiles].slice(0, 5));
+    e.target.value = "";
+  };
+
+  const handleRemovePhoto = (indexToRemove: number) => {
+    setPhotos((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+  };
 
   // Validation rules (Requirements: name >= 2 chars; telegram MUST start with "@" and have at least 1 char after)
   const isNameValid = name.trim().length >= 2;
@@ -74,22 +96,29 @@ export default function OrderModal() {
     setErrorMessage("");
 
     try {
-      const orderPayload = {
-        name: name.trim(),
-        telegram: cleanTg,
-        comment: comment.trim(),
-        cartItems: items.map((item) => ({
-          name: item.name,
-          qty: item.qty,
-          price: getUnitPrice(item.qty),
-        })),
-        totalPrice,
-      };
+      const formData = new FormData();
+      formData.append("name", name.trim());
+      formData.append("telegram", cleanTg);
+      formData.append("comment", comment.trim());
+      formData.append("totalPrice", String(totalPrice));
+      formData.append(
+        "cartItems",
+        JSON.stringify(
+          items.map((item) => ({
+            name: item.name,
+            qty: item.qty,
+            price: getUnitPrice(item.qty),
+          }))
+        )
+      );
+
+      photos.forEach((file) => {
+        formData.append("photos", file);
+      });
 
       const res = await fetch("/api/order", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderPayload),
+        body: formData,
       });
 
       const data = await res.json();
@@ -272,10 +301,90 @@ export default function OrderModal() {
                     rows={3}
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    placeholder="Напишіть побажання щодо дизайну, якщо хочете кастомну картку, або залиште порожнім"
+                    placeholder="Напишіть побажання щодо дизайну або залиште порожнім"
                     className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none text-sm font-medium transition-all text-gray-900 bg-gray-50/50 focus:bg-white resize-none"
                   />
                 </div>
+
+                {/* Field 4: Custom Design Photos (Only for Custom Theme) */}
+                {isCustomTheme && (
+                  <div>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <label className="block text-xs sm:text-sm font-bold text-brand-primary">
+                        Фото або приклад дизайну{" "}
+                        <span className="text-gray-400 font-normal">(необов&apos;язково)</span>
+                      </label>
+                      <span className="text-[11px] font-semibold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                        {photos.length}/5
+                      </span>
+                    </div>
+
+                    {/* Previews Grid */}
+                    {photos.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-2.5">
+                        {photos.map((file, idx) => {
+                          const previewUrl = URL.createObjectURL(file);
+                          return (
+                            <div
+                              key={idx}
+                              className="relative w-16 h-16 rounded-xl overflow-hidden border border-gray-200 shadow-sm group shrink-0 bg-gray-100"
+                            >
+                              <img
+                                src={previewUrl}
+                                alt={`Фото ${idx + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => handleRemovePhoto(idx)}
+                                className="absolute top-1 right-1 w-5 h-5 bg-black/70 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-[10px] transition-colors cursor-pointer"
+                                title="Видалити фото"
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Upload Button */}
+                    {photos.length < 5 && (
+                      <div>
+                        <label
+                          htmlFor="order-photos-mobile"
+                          className="flex items-center justify-center gap-2 w-full min-h-[44px] px-4 py-2.5 border-2 border-dashed border-gray-300 hover:border-brand-primary/60 hover:bg-brand-light/30 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 cursor-pointer transition-colors"
+                        >
+                          <svg
+                            className="w-5 h-5 text-brand-primary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <span>{photos.length === 0 ? "Додати фото дизайну чи логотип" : "Додати ще фото"}</span>
+                        </label>
+                        <input
+                          id="order-photos-mobile"
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={handlePhotoChange}
+                          className="hidden"
+                        />
+                      </div>
+                    )}
+                    <p className="text-[11px] text-gray-500 mt-1">
+                      Можна прикріпити до 5 фото логотипу, ескізу чи прикладу.
+                    </p>
+                  </div>
+                )}
 
                 {/* Error Notice */}
                 {errorMessage && (
@@ -455,13 +564,97 @@ export default function OrderModal() {
                     </label>
                     <textarea
                       id="order-comment-desktop"
-                      rows={4}
+                      rows={3}
                       value={comment}
                       onChange={(e) => setComment(e.target.value)}
-                      placeholder="Напишіть побажання щодо дизайну, якщо хочете кастомну картку, або залиште порожнім"
+                      placeholder="Напишіть побажання щодо дизайну або залиште порожнім"
                       className="w-full px-5 py-3.5 rounded-2xl border border-gray-300 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 outline-none text-base font-medium transition-all text-gray-900 bg-gray-50/50 focus:bg-white resize-none"
                     />
                   </div>
+
+                  {/* Field 4 Desktop: Custom Design Photos (Only for Custom Theme) */}
+                  {isCustomTheme && (
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <label className="block text-sm font-bold text-brand-primary">
+                          Фото або приклад дизайну{" "}
+                          <span className="text-gray-400 font-normal">(необов&apos;язково)</span>
+                        </label>
+                        <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full">
+                          {photos.length} з 5 фото
+                        </span>
+                      </div>
+
+                      {/* Previews Grid Desktop */}
+                      {photos.length > 0 && (
+                        <div className="flex flex-wrap gap-3 mb-3">
+                          {photos.map((file, idx) => {
+                            const previewUrl = URL.createObjectURL(file);
+                            return (
+                              <div
+                                key={idx}
+                                className="relative w-20 h-20 rounded-2xl overflow-hidden border border-gray-200 shadow-sm group shrink-0 bg-gray-100"
+                              >
+                                <img
+                                  src={previewUrl}
+                                  alt={`Фото ${idx + 1}`}
+                                  className="w-full h-full object-cover"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemovePhoto(idx)}
+                                  className="absolute top-1.5 right-1.5 w-6 h-6 bg-black/70 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-xs transition-colors cursor-pointer"
+                                  title="Видалити фото"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {/* Upload Button Desktop */}
+                      {photos.length < 5 && (
+                        <div>
+                          <label
+                            htmlFor="order-photos-desktop"
+                            className="flex items-center justify-center gap-2.5 w-full min-h-[50px] px-5 py-3 border-2 border-dashed border-gray-300 hover:border-brand-primary/60 hover:bg-brand-light/40 rounded-2xl text-sm font-semibold text-gray-700 cursor-pointer transition-colors"
+                          >
+                            <svg
+                              className="w-5 h-5 text-brand-primary"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span>
+                              {photos.length === 0
+                                ? "Прикріпити фото / логотип (до 5 шт)"
+                                : "Додати ще фото"}
+                            </span>
+                          </label>
+                          <input
+                            id="order-photos-desktop"
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={handlePhotoChange}
+                            className="hidden"
+                          />
+                        </div>
+                      )}
+                      <p className="text-xs text-gray-500 mt-1.5">
+                        Можна прикріпити логотип, скриншот чи приклад бажаного оформлення.
+                      </p>
+                    </div>
+                  )}
 
                   {/* Error Banner */}
                   {errorMessage && (
