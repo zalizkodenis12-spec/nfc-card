@@ -176,7 +176,7 @@ export default function OrderModal() {
           <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-5">
             {isSuccess ? (
               <div className="py-12 px-4 flex flex-col items-center justify-center text-center space-y-4">
-                <div className="w-20 h-20 rounded-full bg-green-50 text-green-600 flex items-center justify-center shadow-inner">
+                <div className="w-20 h-20 rounded-full bg-brand-light text-brand-primary border border-brand-primary/20 flex items-center justify-center shadow-inner transition-colors">
                   <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
@@ -473,7 +473,7 @@ export default function OrderModal() {
           {isSuccess ? (
             /* Desktop Success Screen */
             <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl p-12 lg:p-16 shadow-2xl border border-brand-primary/15 text-center flex flex-col items-center space-y-6 my-12">
-              <div className="w-24 h-24 rounded-full bg-green-50 text-green-600 flex items-center justify-center shadow-inner">
+              <div className="w-24 h-24 rounded-full bg-brand-light text-brand-primary border border-brand-primary/20 flex items-center justify-center shadow-inner transition-colors">
                 <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>

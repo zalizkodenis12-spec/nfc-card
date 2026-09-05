@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Caveat } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const caveat = Caveat({
@@ -27,6 +28,23 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${caveat.className} h-full antialiased theme-transition`}
     >
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WHC4LT2ZJ6"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WHC4LT2ZJ6', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
       <body className="min-h-full flex flex-col bg-white text-brand-body selection:bg-brand-accent selection:text-white">
         <CardThemeProvider>
           <ThemeProvider
