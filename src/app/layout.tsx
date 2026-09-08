@@ -13,8 +13,27 @@ import { CartProvider } from "@/context/CartContext";
 import { CardThemeProvider } from "@/context/ThemeContext";
 
 export const metadata: Metadata = {
-  title: "DWS Cards - NFC-картки для збору відгуків Google",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://dwscards.com"),
+  title: "DWS Cards - NFC-картки для бізнесу",
   description: "NFC-картки для бізнесу. Швидкий та зручний збір 5★ відгуків Google в один дотик без QR-кодів.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  openGraph: {
+    title: "DWS Cards - NFC-картки для бізнесу",
+    description: "NFC-картки для бізнесу: Google Maps, Instagram та індивідуальний дизайн. 5★ відгуків в один дотик.",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 1200, alt: "DWS Cards Logo" }],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -29,6 +48,11 @@ export default function RootLayout({
       className={`${caveat.className} h-full antialiased theme-transition`}
     >
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+        <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-WHC4LT2ZJ6"
