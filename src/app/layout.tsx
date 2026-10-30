@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "DWS Cards - NFC-картки для бізнесу",
-    description: "NFC-картки для бізнесу: Google Maps, Instagram та індивідуальний дизайн. 5★ відгуків в один дотик.",
+    description: "NFC-картки для бізнесу: Google Maps та індивідуальний дизайн. 5★ відгуків в один дотик.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 1200, alt: "DWS Cards Logo" }],
   },
   manifest: "/site.webmanifest",

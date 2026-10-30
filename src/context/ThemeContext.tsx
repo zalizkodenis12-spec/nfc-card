@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 export interface CardTheme {
   id: "google" | "instagram" | "dws";
+  enabled?: boolean;
   name: string;
   cardImage: string;
   headlinePrefix: string;
@@ -24,9 +25,10 @@ export interface CardTheme {
   };
 }
 
-export const CARD_THEMES: CardTheme[] = [
+export const ALL_CARD_THEMES: CardTheme[] = [
   {
     id: "google",
+    enabled: true,
     name: "Google Maps",
     cardImage: "/nfc-card.jpg",
     headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
@@ -52,6 +54,8 @@ export const CARD_THEMES: CardTheme[] = [
   },
   {
     id: "instagram",
+    // 🟠 Тимчасово відключено за запитом (можна в будь-який момент повернути на true)
+    enabled: false,
     name: "Instagram",
     cardImage: "/instagram-card.jpg",
     headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
@@ -77,6 +81,7 @@ export const CARD_THEMES: CardTheme[] = [
   },
   {
     id: "dws",
+    enabled: true,
     name: "Власний дизайн",
     cardImage: "/dws-card.jpg",
     headlinePrefix: "NFC-КАРТКА ДЛЯ БІЗНЕСУ",
@@ -101,6 +106,11 @@ export const CARD_THEMES: CardTheme[] = [
     },
   },
 ];
+
+// Відображаються лише активні картки (зараз Google Maps та Власний дизайн)
+export const CARD_THEMES: CardTheme[] = ALL_CARD_THEMES.filter(
+  (t) => t.enabled !== false
+);
 
 interface CardThemeContextType {
   activeThemeIndex: number;
