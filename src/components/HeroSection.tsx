@@ -115,15 +115,9 @@ export default function HeroSection() {
           </div>
           <div style={{ width: "55%", background: "var(--theme-primary)", color: "#fff", padding: "20px 10px", paddingLeft: "10%", textAlign: "center", clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)", marginLeft: "-15%", position: "relative", zIndex: 1, transition: "background-color 400ms ease" }}>
             <span style={{ display: "block", fontSize: "18px", marginBottom: "5px" }}>Акційна ціна:</span>
-            <span style={{ display: "block", fontSize: currentTheme.id === "dws" ? "26px" : "36px", fontWeight: 900 }}>{currentTheme.price}</span>
+            <span style={{ display: "block", fontSize: "36px", fontWeight: 900 }}>{currentTheme.price}</span>
           </div>
         </div>
-
-        {currentTheme.priceNote && (
-          <div style={{ textAlign: "center", fontSize: "12px", color: "#64748B", fontWeight: 700, padding: "8px 15px 0", lineHeight: 1.3 }}>
-            ✨ {currentTheme.priceNote}
-          </div>
-        )}
 
         {/* Кнопка */}
         <div style={{ padding: "25px 20px 0" }}>
@@ -266,15 +260,9 @@ export default function HeroSection() {
             </div>
             <div style={{ width: "55%", background: "var(--theme-primary)", color: "#fff", padding: "32px 30px", paddingLeft: "12%", textAlign: "center", clipPath: "polygon(15% 0, 100% 0, 100% 100%, 0% 100%)", marginLeft: "-15%", position: "relative", zIndex: 1, transition: "background-color 400ms ease" }}>
               <span style={{ display: "block", fontSize: "26px", marginBottom: "8px", fontWeight: 700 }}>Акційна ціна:</span>
-              <span style={{ display: "block", fontSize: currentTheme.id === "dws" ? "44px" : "56px", fontWeight: 900 }}>{currentTheme.price}</span>
+              <span style={{ display: "block", fontSize: "56px", fontWeight: 900 }}>{currentTheme.price}</span>
             </div>
           </div>
-
-          {currentTheme.priceNote && (
-            <div style={{ textAlign: "center", fontSize: "16px", color: "#64748B", fontWeight: 700, marginTop: "14px" }}>
-              ✨ {currentTheme.priceNote}
-            </div>
-          )}
 
           {/* Кнопка «КУПИТИ ЗАРАЗ» — розширена на всю ширину блока */}
           <div style={{ padding: "35px 0 0" }}>

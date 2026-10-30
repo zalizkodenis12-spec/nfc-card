@@ -16,7 +16,6 @@ export interface CardTheme {
   productName: string;
   oldPrice: string;
   price: string;
-  priceNote?: string;
   basePriceNum: number;
   colors: {
     primary: string;
@@ -106,8 +105,7 @@ export const ALL_CARD_THEMES: CardTheme[] = [
     productId: "nfc-card-dws",
     productName: "NFC-картка з власним дизайном",
     oldPrice: "699 грн",
-    price: "від 399 грн",
-    priceNote: "Індивідуальний прорахунок складності дизайну та великих тиражів",
+    price: "399 грн",
     basePriceNum: 399,
     colors: {
       primary: "#1E293B", // Преміальний темний графіт / Slate

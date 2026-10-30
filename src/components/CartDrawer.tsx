@@ -206,12 +206,6 @@ export default function CartDrawer() {
                     </div>
                   </div>
 
-                  {items.some((i) => i.id === "nfc-card-dws") && (
-                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 leading-relaxed font-medium">
-                      🎨 <strong>Картка з власним дизайном:</strong> вартість розрахована за базовим тарифом. Фінальний макет та деталі друку додатково узгоджуються з вами.
-                    </div>
-                  )}
-
                   {/* Items */}
                   {items.map((item) => {
                     const unitPrice = getUnitPrice(item.qty);
