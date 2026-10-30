@@ -14,6 +14,10 @@ export interface CardTheme {
   bullets: string[];
   productId: string;
   productName: string;
+  oldPrice: string;
+  price: string;
+  priceNote?: string;
+  basePriceNum: number;
   colors: {
     primary: string;
     primaryDark: string;
@@ -42,6 +46,9 @@ export const ALL_CARD_THEMES: CardTheme[] = [
     ],
     productId: "nfc-card-google-maps",
     productName: "NFC-картка Google Maps",
+    oldPrice: "699 грн",
+    price: "399 грн",
+    basePriceNum: 399,
     colors: {
       primary: "#0B2C6B",
       primaryDark: "#071F4C",
@@ -69,6 +76,9 @@ export const ALL_CARD_THEMES: CardTheme[] = [
     ],
     productId: "nfc-card-instagram",
     productName: "NFC-картка Instagram",
+    oldPrice: "699 грн",
+    price: "399 грн",
+    basePriceNum: 399,
     colors: {
       primary: "#D9531E", // Чуть-чуть світліший, свіжий соковитий оранжевий
       primaryDark: "#B84010",
@@ -95,6 +105,10 @@ export const ALL_CARD_THEMES: CardTheme[] = [
     ],
     productId: "nfc-card-dws",
     productName: "NFC-картка з власним дизайном",
+    oldPrice: "699 грн",
+    price: "від 399 грн",
+    priceNote: "Індивідуальний прорахунок складності дизайну та великих тиражів",
+    basePriceNum: 399,
     colors: {
       primary: "#1E293B", // Преміальний темний графіт / Slate
       primaryDark: "#0F172A",

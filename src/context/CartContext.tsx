@@ -7,15 +7,15 @@ export interface CartItem {
   id: string;
   name: string;
   image: string;
-  basePrice: number; // 499
+  basePrice: number; // 399
   qty: number;
 }
 
 export function getUnitPrice(qty: number): number {
-  if (qty >= 100) return 349;
-  if (qty >= 30) return 399;
-  if (qty >= 10) return 449;
-  return 499;
+  if (qty >= 100) return 199;
+  if (qty >= 50) return 249;
+  if (qty >= 10) return 299;
+  return 399;
 }
 
 interface CartContextType {

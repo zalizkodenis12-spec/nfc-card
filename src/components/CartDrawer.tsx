@@ -181,26 +181,36 @@ export default function CartDrawer() {
               ) : (
                 // Item List
                 <div className="space-y-4">
-                  {/* Wholesale Pricing Info Helper — no plus sign, 3 rows, dark blue #0B2C6B theme */}
+                  {/* Wholesale Pricing Info Helper */}
                   <div className="bg-brand-light border-2 border-brand-primary/25 rounded-2xl p-4 shadow-xs">
                     <div className="font-black text-sm sm:text-base mb-2 text-brand-primary">
                       Оптові знижки на замовлення:
                     </div>
                     <div className="flex flex-col gap-2 text-xs sm:text-sm font-bold text-brand-primary">
                       <div className="flex items-center justify-between border-b border-brand-primary/15 pb-1.5">
-                        <span>• 10–29 шт:</span>
-                        <span className="font-black text-brand-primary text-sm sm:text-base">449 грн/шт</span>
+                        <span>• 1–9 шт:</span>
+                        <span className="font-black text-brand-primary text-sm sm:text-base">399 грн/шт</span>
                       </div>
                       <div className="flex items-center justify-between border-b border-brand-primary/15 pb-1.5">
-                        <span>• 30–99 шт:</span>
-                        <span className="font-black text-brand-primary text-sm sm:text-base">399 грн/шт</span>
+                        <span>• 10–49 шт:</span>
+                        <span className="font-black text-brand-primary text-sm sm:text-base">299 грн/шт</span>
+                      </div>
+                      <div className="flex items-center justify-between border-b border-brand-primary/15 pb-1.5">
+                        <span>• 50–99 шт:</span>
+                        <span className="font-black text-brand-primary text-sm sm:text-base">249 грн/шт</span>
                       </div>
                       <div className="flex items-center justify-between pt-0.5">
                         <span>• 100+ шт:</span>
-                        <span className="font-black text-brand-primary text-sm sm:text-base">349 грн/шт</span>
+                        <span className="font-black text-brand-primary text-sm sm:text-base">199 грн/шт</span>
                       </div>
                     </div>
                   </div>
+
+                  {items.some((i) => i.id === "nfc-card-dws") && (
+                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 leading-relaxed font-medium">
+                      🎨 <strong>Картка з власним дизайном:</strong> вартість розрахована за базовим тарифом. Фінальний макет та деталі друку додатково узгоджуються з вами.
+                    </div>
+                  )}
 
                   {/* Items */}
                   {items.map((item) => {
